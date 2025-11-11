@@ -1,0 +1,48 @@
+import type { ComponentCompiler } from '../types/compiler.js';
+
+/**
+ * Get default extension for compiler
+ */
+export function getCompilerDefaultExtension(
+	compiler: ComponentCompiler,
+	defaultExtension?: string
+): string {
+	switch (compiler) {
+		case 'svelte':
+		case 'vue':
+			// Not compilers, but valid extensions
+			return compiler;
+
+		case 'react':
+			if (defaultExtension === 'tsx') {
+				return 'tsx';
+			}
+			return 'jsx';
+
+		case 'raw':
+			if (defaultExtension === 'ts') {
+				return 'ts';
+			}
+			return 'js';
+
+		default:
+			return '';
+	}
+}
+
+/**
+ * Get compiler from extension
+ */
+export function getCompilerFromExtension(
+	extension: string,
+	defaultCompiler?: ComponentCompiler
+): ComponentCompiler | undefined {
+	switch (extension) {
+		// Extension that matches compiler
+		case 'svelte':
+		case 'vue':
+			return extension;
+	}
+
+	return defaultCompiler || 'raw';
+}

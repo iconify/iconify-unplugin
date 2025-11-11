@@ -1,0 +1,99 @@
+{
+	"name": "unplugin-iconify",
+	"type": "module",
+	"version": "0.0.1",
+	"packageManager": "pnpm@10.15.1",
+	"description": "Icon components on demand",
+	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
+	"license": "MIT",
+	"bugs": "https://github.com/iconify/unplugin-iconify/issues",
+	"homepage": "https://iconify.design/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/iconify/unplugin-iconify.git"
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		},
+		"./astro": {
+			"import": "./dist/astro.mjs",
+			"require": "./dist/astro.cjs"
+		},
+		"./esbuild": {
+			"import": "./dist/esbuild.mjs",
+			"require": "./dist/esbuild.cjs"
+		},
+		"./farm": {
+			"import": "./dist/farm.mjs",
+			"require": "./dist/farm.cjs"
+		},
+		"./nuxt": {
+			"import": "./dist/nuxt.mjs",
+			"require": "./dist/nuxt.cjs"
+		},
+		"./rollup": {
+			"import": "./dist/rollup.mjs",
+			"require": "./dist/rollup.cjs"
+		},
+		"./rspack": {
+			"import": "./dist/rspack.mjs",
+			"require": "./dist/rspack.cjs"
+		},
+		"./types": {
+			"import": "./dist/types.mjs",
+			"require": "./dist/types.cjs"
+		},
+		"./types/raw": {
+			"import": "./dist/types/raw.mjs",
+			"require": "./dist/types/raw.cjs"
+		},
+		"./types/react": {
+			"import": "./dist/types/react.mjs",
+			"require": "./dist/types/react.cjs"
+		},
+		"./types/svelte": {
+			"import": "./dist/types/svelte.mjs",
+			"require": "./dist/types/svelte.cjs"
+		},
+		"./types/vue": {
+			"import": "./dist/types/vue.mjs",
+			"require": "./dist/types/vue.cjs"
+		},
+		"./vite": {
+			"import": "./dist/vite.mjs",
+			"require": "./dist/vite.cjs"
+		},
+		"./webpack": {
+			"import": "./dist/webpack.mjs",
+			"require": "./dist/webpack.cjs"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"*.d.ts",
+		"dist",
+		"types"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"test": "vitest"
+	},
+	"dependencies": {
+		"@iconify/types": "^2.0.0",
+		"local-pkg": "^1.1.2",
+		"unplugin": "^2.3.10"
+	},
+	"devDependencies": {
+		"@cyberalien/svg-utils": "^1.0.3",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^24.10.0",
+		"tsdown": "^0.16.1",
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.8"
+	}
+}

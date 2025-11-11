@@ -1,0 +1,11 @@
+.cache
+.DS_Store
+.idea
+.eslintcache
+.api-cache
+*.local
+*.log
+*.vsix
+*.tsbuildinfo
+node_modules
+dist
