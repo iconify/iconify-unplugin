@@ -6,29 +6,31 @@ import { testPluginPath } from './plugin/url/test.js';
 import { mergeURL } from './plugin/url/split.js';
 import { initCacheDir } from './plugin/cache/config.js';
 import { readFromCache } from './plugin/cache/read.js';
+import { cleanUpOptions } from './plugin/helpers/options.js';
 
 export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 	options
 ) => {
-	// Get namespace for this instance of plugin
-	const namespace = options?.namespace || 'iconify';
+	// Clean up options
+	const fullOptions = cleanUpOptions(options || {});
+	const namespace = fullOptions.namespace;
 
 	return {
 		name: 'unplugin-iconify',
 		enforce: 'pre',
 		resolveId(id) {
-			const cleanPath = testPluginPath(id, namespace, options?.compiler);
+			const cleanPath = testPluginPath(id, fullOptions);
 			if (cleanPath) {
 				return mergeURL(cleanPath);
 			}
 			return null;
 		},
 		loadInclude(id) {
-			const cleanPath = testPluginPath(id, namespace, options?.compiler);
+			const cleanPath = testPluginPath(id, fullOptions);
 			return !!cleanPath;
 		},
 		async load(id) {
-			const cleanPath = testPluginPath(id, namespace, options?.compiler);
+			const cleanPath = testPluginPath(id, fullOptions);
 			if (cleanPath) {
 				// Init stuff
 				if (!(await initCacheDir(options?.cacheDir))) {

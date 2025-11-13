@@ -1,17 +1,28 @@
 import type { SplitURL } from '../types/urls.js';
+import { getCacheDir } from './config.js';
 
 /**
- * Get cache filename from URL
+ * Get cache filename from URL or string
  */
-export function urlToCacheFilename(url: SplitURL): string | undefined {
-	const { namespace, directory, filename, extension, query } = url;
-
-	// Make sure query is empty
-	for (const key in query) {
+export function getCacheFilename(url: SplitURL | string): string | undefined {
+	// Get cache directory
+	const cacheDir = getCacheDir();
+	if (!cacheDir) {
 		return;
 	}
 
+	// Handle string URL
+	if (typeof url === 'string') {
+		return `${cacheDir}/_data/${url}`;
+	}
+
+	// Split URL, can be used only with empty query
+	const { namespace, directory, filename, extension, query } = url;
+	for (const key in query) {
+		return;
+	}
 	const parts: string[] = [
+		cacheDir,
 		namespace,
 		directory,
 		filename.slice(0, 1),

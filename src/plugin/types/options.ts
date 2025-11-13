@@ -1,12 +1,13 @@
+import type { CSSHashOptions } from '@cyberalien/svg-utils/lib/css/types.js';
 import type { ComponentCompiler } from './compiler.js';
 
-export interface PluginOptions {
+export interface CleanedPluginOptions {
 	/**
 	 * Namespace for icon URLs
 	 *
 	 * Default: 'iconify'
 	 */
-	namespace?: string;
+	namespace: string;
 
 	/**
 	 * Compiler
@@ -23,4 +24,11 @@ export interface PluginOptions {
 	 * Default: '.unplugin-iconify' in nearest 'node_modules' directory
 	 */
 	cacheDir?: string;
+
+	/**
+	 * Options for CSS hash generation
+	 */
+	cssHash: Partial<CSSHashOptions>;
 }
+
+export type PluginOptions = Partial<CleanedPluginOptions>;

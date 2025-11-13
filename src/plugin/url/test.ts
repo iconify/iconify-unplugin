@@ -1,18 +1,14 @@
-import type { ComponentCompiler } from '../types/compiler.js';
+import type { CleanedPluginOptions } from '../types/options.js';
 import { normaliseURL } from './normalise.js';
-import { mergeURL, splitURL } from './split.js';
+import { splitURL } from './split.js';
 
 /**
  * Test for path used by plugin, return normalised path if matched
  */
-export function testPluginPath(
-	path: string,
-	namespace: string,
-	defaultCompiler?: ComponentCompiler
-) {
-	const split = splitURL(path, namespace);
+export function testPluginPath(path: string, options: CleanedPluginOptions) {
+	const split = splitURL(path, options.namespace);
 	if (split) {
-		normaliseURL(split, defaultCompiler);
+		normaliseURL(split, options.compiler);
 		return split;
 	}
 }

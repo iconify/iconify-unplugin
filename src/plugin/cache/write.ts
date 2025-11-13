@@ -1,15 +1,15 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import type { SplitURL } from '../types/urls.js';
-import { urlToCacheFilename } from './filename.js';
+import { getCacheFilename } from './filename.js';
 
 /**
  * Read file from cache
  */
 export async function writeToCache(
-	url: SplitURL,
+	url: SplitURL | string,
 	content: string
 ): Promise<boolean> {
-	const filename = urlToCacheFilename(url);
+	const filename = getCacheFilename(url);
 	if (filename) {
 		// Ensure directory exists
 		const dirname = filename.substring(0, filename.lastIndexOf('/'));

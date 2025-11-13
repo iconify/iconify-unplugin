@@ -4,6 +4,13 @@ import { lstat, mkdir } from 'node:fs/promises';
 let cacheDir: string | null | undefined = undefined;
 
 /**
+ * Get cache directory
+ */
+export function getCacheDir(): string | null | undefined {
+	return cacheDir;
+}
+
+/**
  * Try to create directory
  */
 async function tryCreateDir(dir: string): Promise<boolean> {
@@ -24,7 +31,7 @@ async function tryCreateDir(dir: string): Promise<boolean> {
 /**
  * Initialize cache directory
  */
-async function init(dir?: string) {
+async function init(dir?: string): Promise<void> {
 	// Check provided directory
 	if (dir) {
 		cacheDir = (await tryCreateDir(dir)) ? dir : null;
@@ -45,7 +52,6 @@ async function init(dir?: string) {
 				const testDir = dir + '/.unplugin-iconify';
 				if (await tryCreateDir(testDir)) {
 					cacheDir = testDir;
-					console.log('Cache directory initialized:', cacheDir);
 					return;
 				}
 			}
@@ -58,14 +64,25 @@ async function init(dir?: string) {
 	cacheDir = null;
 }
 
+let initialized: string | undefined | null = null;
+
 /**
  * Initialize cache directory
  */
 export async function initCacheDir(
 	dir?: string
 ): Promise<string | null | undefined> {
+	// Make sure only one directory is used
+	if (initialized !== null && initialized !== dir) {
+		throw new Error(
+			'Please use the same cache directory for all plugin instances'
+		);
+	}
+	initialized = dir;
+
+	// Initialize cache directory
 	if (cacheDir === undefined) {
-		await uniquePromise('init-cache-dir', () => init());
+		await uniquePromise('init-cache-dir', () => init(dir));
 	}
 	return cacheDir;
 }
