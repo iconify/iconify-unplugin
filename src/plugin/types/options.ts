@@ -29,6 +29,11 @@ export interface CleanedPluginOptions {
 	 * Options for CSS hash generation
 	 */
 	cssHash: Partial<CSSHashOptions>;
+
+	/**
+	 * Use Iconify API to load icon sets if not found locally
+	 */
+	allowAPI?: boolean;
 }
 
 export type PluginOptions = Partial<CleanedPluginOptions>;

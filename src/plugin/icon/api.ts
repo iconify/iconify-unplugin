@@ -49,6 +49,7 @@ async function loadIconNames(
 	const iconNames = new Set([
 		...(data.uncategorized ?? []),
 		...(data.hidden ?? []),
+		...Object.keys(data.aliases ?? {}),
 	]);
 	if (data.categories) {
 		for (const category in data.categories) {
@@ -75,6 +76,11 @@ async function loadIcon(
 	lastModified: number
 ): Promise<IconifyIcon | null> {
 	const fullName = `${prefix}:${name}`;
+	if (!fullName.match(/^[a-z0-9-_]+:[a-z0-9-_]+$/)) {
+		// Invalid prefix or name
+		return null;
+	}
+
 	const cacheURL = `_api/${prefix}/${name}.${lastModified}.json`;
 
 	// Try to load from cache

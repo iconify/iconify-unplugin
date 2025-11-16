@@ -1,16 +1,6 @@
-import type { IconifyIcon } from '@iconify/types';
+import type { FactoryIconData } from '@cyberalien/svg-utils/lib/components/types/data.js';
 
-export interface LoadedIconData {
-	// Icon name
-	prefix: string;
-	name: string;
-
+export interface LoadedIconData extends FactoryIconData {
 	// Is available on Iconify API
 	isIconify: boolean;
-
-	// Custom fallback icon name, in format 'prefix:name'
-	fallback?: string;
-
-	// Icon data
-	data: IconifyIcon;
 }

@@ -1,15 +1,15 @@
-import type { IconifyIcon } from '@iconify/types';
 import { getIconifyIconSetIcon } from '@cyberalien/svg-utils/lib/iconify/icon-set/icon.js';
 import { loadIconSet } from '../icon-sets/load.js';
 import type { LoadedIconData } from '../types/icon.js';
 import { loadIconFromAPI } from './api.js';
+import { convertIconifyIcon } from './convert.js';
+import type { PluginOptions } from '../types/options.js';
+import type { ConvertSVGContentOptions } from '@cyberalien/svg-utils/lib/svg-css/types.js';
+import { defaultCSSHashOptions } from './svg-css/config.js';
 
-interface Options {
+interface Options extends Pick<PluginOptions, 'allowAPI' | 'cssHash'> {
 	// Custom fallback icon name, in format 'prefix:name'
 	fallback?: string;
-
-	// Use Iconify API to load icon set
-	allowAPI?: boolean;
 }
 
 /**
@@ -23,12 +23,20 @@ interface Options {
 export async function loadIcon(
 	prefix: string,
 	name: string,
-	options?: Options
+	options: Options
 ): Promise<LoadedIconData | null> {
 	const iconSet = await loadIconSet(prefix, options?.allowAPI);
 	if (!iconSet) {
 		return null;
 	}
+
+	// Options for conversion
+	const convertOptions: ConvertSVGContentOptions = {
+		hashOptions: {
+			...defaultCSSHashOptions,
+			...options.cssHash,
+		},
+	};
 
 	// Get fallback icon name
 	const fallback =
@@ -39,13 +47,15 @@ export async function loadIcon(
 		// Get icon from IconifyJSON format
 		const data = getIconifyIconSetIcon(iconSet.data, name);
 		if (data) {
-			return {
-				prefix,
-				name,
-				isIconify: iconSet.isIconify,
-				data,
-				fallback,
-			};
+			return convertIconifyIcon(data, {
+				icon: {
+					name,
+					prefix,
+					fallback,
+					isIconify: iconSet.isIconify,
+				},
+				options: convertOptions,
+			});
 		}
 	}
 
@@ -53,13 +63,15 @@ export async function loadIcon(
 		// Fetch icon from API
 		const data = await loadIconFromAPI(iconSet, iconSet.api, name);
 		if (data) {
-			return {
-				prefix,
-				name,
-				isIconify: true,
-				data,
-				fallback,
-			};
+			return convertIconifyIcon(data, {
+				icon: {
+					name,
+					prefix,
+					fallback,
+					isIconify: true,
+				},
+				options: convertOptions,
+			});
 		}
 	}
 

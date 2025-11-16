@@ -9,8 +9,6 @@ export function getCompilerDefaultExtension(
 ): string {
 	switch (compiler) {
 		case 'svelte':
-		case 'vue':
-			// Not compilers, but valid extensions
 			return compiler;
 
 		case 'react':
@@ -18,6 +16,9 @@ export function getCompilerDefaultExtension(
 				return 'tsx';
 			}
 			return 'jsx';
+
+		case 'vue':
+			return 'js';
 
 		case 'raw':
 			if (defaultExtension === 'ts') {

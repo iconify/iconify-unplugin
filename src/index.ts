@@ -1,19 +1,23 @@
 import type { UnpluginFactory } from 'unplugin';
 import { createUnplugin } from 'unplugin';
 import type { PluginOptions } from './plugin/types/options.js';
-import { getCompilerDefaultExtension } from './plugin/url/ext.js';
 import { testPluginPath } from './plugin/url/test.js';
 import { mergeURL } from './plugin/url/split.js';
 import { initCacheDir } from './plugin/cache/config.js';
 import { readFromCache } from './plugin/cache/read.js';
 import { cleanUpOptions } from './plugin/helpers/options.js';
+import { isAsset } from './plugin/asset/check.js';
+import { loadIcon } from './plugin/icon/load.js';
+import { isIconAsset } from './plugin/icon/path.js';
+import { getFallbackParam } from './plugin/url/params.js';
+import { compileComponent } from './plugin/component/compile.js';
+import { prepareComponentForRender } from './plugin/component/stringify.js';
 
 export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 	options
 ) => {
 	// Clean up options
 	const fullOptions = cleanUpOptions(options || {});
-	const namespace = fullOptions.namespace;
 
 	return {
 		name: 'unplugin-iconify',
@@ -48,8 +52,51 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 					};
 				}
 
-				console.log('generating:', cleanPath);
-				//
+				// Check for reserved name
+				if (isAsset(cleanPath)) {
+					// Cannot render: should have been cached when generating icon
+					throw new Error(
+						`Asset not found in cache: ${mergeURL(cleanPath)}`
+					);
+				}
+
+				// Load icon
+				const iconName = isIconAsset(cleanPath);
+				if (!iconName) {
+					throw new Error(
+						`Invalid icon path: ${mergeURL(cleanPath)}`
+					);
+				}
+				const icon = await loadIcon(iconName.prefix, iconName.name, {
+					...fullOptions,
+					fallback: getFallbackParam(cleanPath.query),
+				});
+				if (!icon) {
+					throw new Error(`Icon not found: ${mergeURL(cleanPath)}`);
+				}
+
+				// Compile component
+				// console.log('generating:', cleanPath, 'with', icon);
+				const component = compileComponent(
+					icon,
+					cleanPath,
+					fullOptions
+				);
+				if (!component) {
+					throw new Error(
+						`Failed to compile component: ${mergeURL(cleanPath)}`
+					);
+				}
+
+				// Return content
+				const content = await prepareComponentForRender(
+					component,
+					fullOptions.namespace
+				);
+				return {
+					code: content,
+					map: { version: 3, mappings: '', sources: [] } as any,
+				};
 			}
 		},
 		rollup: {

@@ -1,3 +1,4 @@
+import { isAsset } from '../asset/check.js';
 import type { ComponentCompiler } from '../types/compiler.js';
 import type { SplitURL } from '../types/urls.js';
 import { cssDirectory, helpersDirectory, viewboxDirectory } from './const.js';
@@ -12,18 +13,23 @@ import {
 export function normaliseURL(
 	url: SplitURL,
 	defaultCompiler?: ComponentCompiler
-) {
-	const { query, directory } = url;
+): boolean {
+	const { query } = url;
 
 	// Check reserved directories
-	switch (directory) {
-		case cssDirectory:
-		case helpersDirectory:
-		case viewboxDirectory: {
-			// No compiler, query should be empty
-			url.extension = directory === cssDirectory ? 'css' : 'js';
-			url.query = new URLSearchParams();
-			return;
+	const reservedDirectory = isAsset(url);
+	if (reservedDirectory) {
+		switch (reservedDirectory) {
+			case cssDirectory:
+				return url.extension === 'css';
+
+			default:
+				switch (url.extension) {
+					case 'js':
+					case 'ts':
+						return true;
+				}
+				return false;
 		}
 	}
 
@@ -35,7 +41,7 @@ export function normaliseURL(
 			url.extension
 		);
 		url.extension = ext;
-		return;
+		return true;
 	}
 
 	// Attempt to get compiler based on extension
@@ -51,7 +57,7 @@ export function normaliseURL(
 				compiler,
 				url.extension
 			);
-			return;
+			return true;
 		}
 	}
 
@@ -62,5 +68,9 @@ export function normaliseURL(
 			defaultCompiler,
 			url.extension
 		);
+		return true;
 	}
+
+	// Failed to normalise
+	return false;
 }

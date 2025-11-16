@@ -7,9 +7,6 @@ import { getCacheDir } from './config.js';
 export function getCacheFilename(url: SplitURL | string): string | undefined {
 	// Get cache directory
 	const cacheDir = getCacheDir();
-	if (!cacheDir) {
-		return;
-	}
 
 	// Handle string URL
 	if (typeof url === 'string') {
@@ -18,7 +15,7 @@ export function getCacheFilename(url: SplitURL | string): string | undefined {
 
 	// Split URL, can be used only with empty query
 	const { namespace, directory, filename, extension, query } = url;
-	for (const key in query) {
+	for (const key of query) {
 		return;
 	}
 	const parts: string[] = [

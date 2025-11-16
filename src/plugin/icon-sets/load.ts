@@ -15,6 +15,11 @@ async function load(
 	prefix: string,
 	allowAPI?: boolean
 ): Promise<IconSetData | null> {
+	if (!prefix.match(/^[a-z0-9-_]+$/)) {
+		// Invalid prefix
+		return null;
+	}
+
 	// Try '@iconify/json' package
 	const fullPackage = await getPackageRootPath('@iconify/json');
 	if (fullPackage) {
