@@ -1,10 +1,11 @@
 {
 	"name": "@iconify/unplugin",
 	"type": "module",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"packageManager": "pnpm@10.22.0",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
+	"funding": "https://github.com/sponsors/cyberalien",
 	"license": "MIT",
 	"bugs": "https://github.com/iconify/iconify-unplugin/issues",
 	"homepage": "https://iconify.design/",
@@ -80,7 +81,7 @@
 		"test": "vitest"
 	},
 	"dependencies": {
-		"@cyberalien/svg-utils": "^1.0.7",
+		"@cyberalien/svg-utils": "^1.0.8",
 		"@iconify/types": "^2.0.0",
 		"local-pkg": "^1.1.2",
 		"unplugin": "^2.3.10"

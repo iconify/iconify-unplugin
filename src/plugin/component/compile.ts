@@ -2,6 +2,7 @@ import type { FactoryGeneratedComponent } from '@cyberalien/svg-utils/lib/compon
 import { createRawComponent } from '@cyberalien/svg-utils/lib/components/raw.js';
 import { createSvelteComponent } from '@cyberalien/svg-utils/lib/components/svelte.js';
 import { createVueFunctionalComponent } from '@cyberalien/svg-utils/lib/components/vue-func.js';
+import { createJSXComponent } from '@cyberalien/svg-utils/lib/components/jsx.js';
 import { makeSquareViewBox } from '@cyberalien/svg-utils/lib/svg/viewbox/square.js';
 import type { LoadedIconData } from '../types/icon.js';
 import type { CleanedPluginOptions } from '../types/options.js';
@@ -65,6 +66,13 @@ export async function compileComponent(
 				content: await compileSvelteComponent(component.content),
 			};
 		}
+
+		case 'react':
+			return createJSXComponent(icon, {
+				...factoryOptions,
+				jsx: 'react',
+				fallbackPackage: '@iconify/css-react',
+			});
 	}
 
 	return;

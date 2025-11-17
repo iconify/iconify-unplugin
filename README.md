@@ -74,6 +74,7 @@ Compilers with a fallback for Safari browser:
 
 -   `vue` - generates Vue 3 components.
 -   `svelte` - generates Svelte 5 components (uses runes).
+-   `react` - generates React components.
 
 Compilers without a fallback, so icons will work only in modern browsers:
 
@@ -156,6 +157,16 @@ import BellIcon from '/~iconify/mdi-light/bell';
 </script>
 
 <BellIcon height="1em" />
+```
+
+### React example
+
+```jsx
+import BellIcon from '/~iconify/mdi-light/bell';
+
+function Test() {
+	return <BellIcon height="1em" />;
+}
 ```
 
 ## Parameters
