@@ -1,5 +1,5 @@
 import { splitURL, mergeURL } from '../src/plugin/url/split.js';
-import { cssDirectory } from '../src/plugin/url/const.js';
+import { cssDirectory, helpersDirectory } from '../src/plugin/url/const.js';
 import { normaliseURL } from '../src/plugin/url/normalise.js';
 
 describe('Split and merge URLs', () => {
@@ -10,6 +10,66 @@ describe('Split and merge URLs', () => {
 		}
 		return params;
 	}
+
+	it('Assets', () => {
+		// CSS file, use '~' prefix
+		const split1 = splitURL(
+			`~iconify/${cssDirectory}/fooBar.css`,
+			'iconify'
+		);
+		expect(split1).toEqual({
+			prefix: '~',
+			namespace: 'iconify',
+			directory: cssDirectory,
+			filename: 'fooBar',
+			extension: 'css',
+			query: new URLSearchParams(),
+		});
+		expect(mergeURL(split1!)).toBe(`/~iconify/${cssDirectory}/fooBar.css`);
+
+		// Normalise URL (should not change anything because of reserved directory)
+		const normalised1 = normaliseURL(split1!, 'svelte');
+		expect(normalised1!.type).toBe('asset');
+		expect(mergeURL(normalised1!)).toBe(
+			`/~iconify/${cssDirectory}/fooBar.css`
+		);
+
+		// Helper file
+		const split2 = splitURL(`~test/${helpersDirectory}/size.js`, 'test');
+		expect(split2).toEqual({
+			prefix: '~',
+			namespace: 'test',
+			directory: helpersDirectory,
+			filename: 'size',
+			extension: 'js',
+			query: new URLSearchParams(),
+		});
+		expect(mergeURL(split2!)).toBe(`/~test/${helpersDirectory}/size.js`);
+
+		// Normalise URL (should not change anything because of reserved directory)
+		const normalised2 = normaliseURL(split2!, 'svelte');
+		expect(normalised2!.type).toBe('asset');
+		expect(mergeURL(normalised2!)).toBe(
+			`/~test/${helpersDirectory}/size.js`
+		);
+
+		// Types file
+		const split3 = splitURL(`~test/mdi-light/bell.d.ts`, 'test');
+		expect(split3).toEqual({
+			prefix: '~',
+			namespace: 'test',
+			directory: 'mdi-light',
+			filename: 'bell',
+			extension: 'd.ts',
+			query: new URLSearchParams(),
+		});
+		expect(mergeURL(split3!)).toBe(`/~test/mdi-light/bell.d.ts`);
+
+		// Normalise URL (should not change anything because of reserved directory)
+		const normalised3 = normaliseURL(split3!, 'vue');
+		expect(normalised3!.type).toBe('asset');
+		expect(mergeURL(normalised3!)).toBe(`/~test/mdi-light/bell.d.ts`);
+	});
 
 	it('Valid URLs', () => {
 		// Simple URL, 'virtual:' prefix
@@ -24,27 +84,30 @@ describe('Split and merge URLs', () => {
 		});
 		expect(mergeURL(split1!)).toBe('/~iconify/mdi-light/bell');
 
-		// Normalise URL without extension or compiler
-		normaliseURL(split1!);
+		// Normalise URL without extension or compiler - should fail
+		expect(normaliseURL(split1!)).toBeUndefined();
 		expect(mergeURL(split1!)).toBe('/~iconify/mdi-light/bell');
 
 		// Normalise URL with default compiler
-		normaliseURL(split1!, 'react');
-		expect(mergeURL(split1!)).toBe(
+		const normalised1 = normaliseURL(split1!, 'react');
+		expect(normalised1!.type).toBe('component');
+		expect(mergeURL(normalised1!)).toBe(
 			'/~iconify/mdi-light/bell.jsx?compiler=react'
 		);
 
 		// Normalise URL with a different compiler, keep custom extension
 		split1!.query.delete('compiler');
 		split1!.extension = '';
-		normaliseURL(split1!, 'raw');
-		expect(mergeURL(split1!)).toBe(
+		const normalised1a = normaliseURL(split1!, 'raw');
+		expect(normalised1a!.type).toBe('component');
+		expect(mergeURL(normalised1a!)).toBe(
 			'/~iconify/mdi-light/bell.js?compiler=raw'
 		);
 
 		split1!.extension = 'ts';
-		normaliseURL(split1!, 'raw');
-		expect(mergeURL(split1!)).toBe(
+		const normalised1b = normaliseURL(split1!, 'raw');
+		expect(normalised1b!.type).toBe('component');
+		expect(mergeURL(normalised1b!)).toBe(
 			'/~iconify/mdi-light/bell.ts?compiler=raw'
 		);
 
@@ -64,33 +127,15 @@ describe('Split and merge URLs', () => {
 		expect(mergeURL(split2!)).toBe('/~iconify/mdi-light/bell.vue');
 
 		// Normalise URL based on extension
-		normaliseURL(split2!);
-		expect(mergeURL(split2!)).toBe(
-			'/~iconify/mdi-light/bell.vue?compiler=vue'
+		const normalised2 = normaliseURL(split2!);
+		expect(normalised2!.type).toBe('component');
+		expect(mergeURL(normalised2!)).toBe(
+			'/~iconify/mdi-light/bell.js?compiler=vue'
 		);
-
-		// Use '~' prefix
-		const split3 = splitURL(
-			`~iconify/${cssDirectory}/fooBar.css`,
-			'iconify'
-		);
-		expect(split3).toEqual({
-			prefix: '~',
-			namespace: 'iconify',
-			directory: cssDirectory,
-			filename: 'fooBar',
-			extension: 'css',
-			query: new URLSearchParams(),
-		});
-		expect(mergeURL(split3!)).toBe(`/~iconify/${cssDirectory}/fooBar.css`);
-
-		// Normalise URL (should not change anything because of reserved directory)
-		normaliseURL(split3!, 'svelte');
-		expect(mergeURL(split3!)).toBe(`/~iconify/${cssDirectory}/fooBar.css`);
 
 		// Use '/~' prefix
-		const split4 = splitURL('/~iconify/mdi-light/bell', 'iconify');
-		expect(split4).toEqual({
+		const split3 = splitURL('/~iconify/mdi-light/bell', 'iconify');
+		expect(split3).toEqual({
 			prefix: '/~',
 			namespace: 'iconify',
 			directory: 'mdi-light',
@@ -98,14 +143,14 @@ describe('Split and merge URLs', () => {
 			extension: '',
 			query: new URLSearchParams(),
 		});
-		expect(mergeURL(split4!)).toBe('/~iconify/mdi-light/bell');
+		expect(mergeURL(split3!)).toBe('/~iconify/mdi-light/bell');
 
 		// Query string
-		const split5 = splitURL(
+		const split4 = splitURL(
 			'/~iconify/mdi-light/bell.vue?compiler=vue&mode=svg&square',
 			'iconify'
 		);
-		expect(split5).toEqual({
+		expect(split4).toEqual({
 			prefix: '/~',
 			namespace: 'iconify',
 			directory: 'mdi-light',
@@ -117,14 +162,15 @@ describe('Split and merge URLs', () => {
 				square: '',
 			}),
 		});
-		expect(mergeURL(split5!)).toBe(
+		expect(mergeURL(split4!)).toBe(
 			'/~iconify/mdi-light/bell.vue?compiler=vue&mode=svg&square='
 		);
 
 		// Normalise URL, default compiler should be ignored
-		normaliseURL(split5!, 'svelte');
-		expect(mergeURL(split5!)).toBe(
-			'/~iconify/mdi-light/bell.vue?compiler=vue&mode=svg&square='
+		const normalised4 = normaliseURL(split4!, 'svelte');
+		expect(normalised4!.type).toBe('component');
+		expect(mergeURL(normalised4!)).toBe(
+			'/~iconify/mdi-light/bell.js?compiler=vue&mode=svg&square='
 		);
 	});
 

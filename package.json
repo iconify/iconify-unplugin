@@ -89,7 +89,7 @@
 		"unplugin": "^2.3.10"
 	},
 	"devDependencies": {
-		"@cyberalien/svg-utils": "^1.0.6",
+		"@cyberalien/svg-utils": "^1.0.7",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.10.0",
 		"tsdown": "^0.16.1",

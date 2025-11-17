@@ -34,8 +34,8 @@ export function splitURL(url: string, namespace: string): SplitURL | undefined {
 			// Split filename to get extension
 			const filenameParts = fullFilename.split('.');
 			if (filenameParts.length > 1) {
-				const extension = filenameParts.pop() as string;
-				const filename = filenameParts.join('.');
+				const filename = filenameParts.shift() as string;
+				const extension = filenameParts.join('.') as string;
 				return {
 					prefix,
 					namespace,

@@ -8,6 +8,6 @@ import { splitURL } from './split.js';
 export function testPluginPath(path: string, options: CleanedPluginOptions) {
 	const split = splitURL(path, options.namespace);
 	if (split) {
-		return normaliseURL(split, options.compiler) ? split : undefined;
+		return normaliseURL(split, options.compiler);
 	}
 }

@@ -10,3 +10,27 @@ export function getFallbackParam(query: URLSearchParams): string | undefined {
 		}
 	}
 }
+
+/**
+ * Clean up fallback parameter
+ */
+export function getBooleanParam<T>(
+	query: URLSearchParams,
+	key: string,
+	defaultValue: T
+): boolean | T {
+	const value = query.get(key);
+	switch (value) {
+		case 'true':
+		case '':
+		case '1':
+			return true;
+
+		case 'false':
+		case '0':
+			return false;
+
+		default:
+			return defaultValue;
+	}
+}

@@ -6,12 +6,12 @@ import { mergeURL } from './plugin/url/split.js';
 import { initCacheDir } from './plugin/cache/config.js';
 import { readFromCache } from './plugin/cache/read.js';
 import { cleanUpOptions } from './plugin/helpers/options.js';
-import { isAsset } from './plugin/asset/check.js';
 import { loadIcon } from './plugin/icon/load.js';
 import { isIconAsset } from './plugin/icon/path.js';
 import { getFallbackParam } from './plugin/url/params.js';
 import { compileComponent } from './plugin/component/compile.js';
 import { prepareComponentForRender } from './plugin/component/stringify.js';
+import { assertDepenecyExists } from './plugin/component/deps.js';
 
 export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 	options
@@ -52,8 +52,8 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 					};
 				}
 
-				// Check for reserved name
-				if (isAsset(cleanPath)) {
+				// Check for asset
+				if (cleanPath.type === 'asset') {
 					// Cannot render: should have been cached when generating icon
 					throw new Error(
 						`Asset not found in cache: ${mergeURL(cleanPath)}`
@@ -86,6 +86,13 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 					throw new Error(
 						`Failed to compile component: ${mergeURL(cleanPath)}`
 					);
+				}
+
+				// Check all dependencies
+				if (component.dependencies) {
+					for (const dep of component.dependencies) {
+						await assertDepenecyExists(dep);
+					}
 				}
 
 				// Return content

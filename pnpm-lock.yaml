@@ -19,8 +19,8 @@ importers:
         version: 2.3.10
     devDependencies:
       '@cyberalien/svg-utils':
-        specifier: ^1.0.6
-        version: 1.0.6
+        specifier: ^1.0.7
+        version: 1.0.7
       '@types/jest':
         specifier: ^30.0.0
         version: 30.0.0
@@ -49,6 +49,9 @@ importers:
       '@iconify-json/vscode-icons':
         specifier: ^1.2.30
         version: 1.2.33
+      '@iconify/css-vue':
+        specifier: ^1.0.1
+        version: 1.0.1(vue@3.5.24(typescript@5.9.3))
       '@vitejs/plugin-vue':
         specifier: ^6.0.1
         version: 6.0.1(vite@7.2.2(@types/node@24.10.0)(jiti@2.6.1))(vue@3.5.24(typescript@5.9.3))
@@ -95,8 +98,8 @@ packages:
     resolution: {integrity: sha512-qQ5m48eI/MFLQ5PxQj4PFaprjyCTLI37ElWMmNs0K8Lk3dVeOdNpB3ks8jc7yM5CDmVC73eMVk/trk3fgmrUpA==}
     engines: {node: '>=6.9.0'}
 
-  '@cyberalien/svg-utils@1.0.6':
-    resolution: {integrity: sha512-luXFyCSKZaLJUt89np6E+//fJKRei//D0H6bQk6EXTgV7vlXqWLCd2c/g/HAo8w2faHEhM7WxOoH8NBvVARw3Q==}
+  '@cyberalien/svg-utils@1.0.7':
+    resolution: {integrity: sha512-JWh/tYCSxDH1Qi3DgkDy25vRMfLAtyNF1z5srKp2JmlLRI+YdW6GNNYquqleskJUQFdQutFlbEAShVqgk1aDVA==}
 
   '@emnapi/core@1.7.0':
     resolution: {integrity: sha512-pJdKGq/1iquWYtv1RRSljZklxHCOCAJFJrImO5ZLKPJVJlVUcs8yFwNQlqS0Lo8xT1VAXXTCZocF9n26FWEKsw==}
@@ -268,6 +271,11 @@ packages:
 
   '@iconify-json/vscode-icons@1.2.33':
     resolution: {integrity: sha512-2lKDybGxXXeLeeqeNT2YVDYXs5va0YMHf06w3GemS22j/0CCTpKwKDK7REaibsCq3bRV8qX0RJDM4AbREE7L+w==}
+
+  '@iconify/css-vue@1.0.1':
+    resolution: {integrity: sha512-rGkUIToUFUfP1zIYrY8A1pWUcadGxbMgAsUyI4PmK6BgxTO5Sajw1cbl6gqMi/D26S6LSjEG/Q+7O7gcLJthaA==}
+    peerDependencies:
+      vue: '>=3'
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -1211,7 +1219,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@cyberalien/svg-utils@1.0.6':
+  '@cyberalien/svg-utils@1.0.7':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -1316,6 +1324,11 @@ snapshots:
   '@iconify-json/vscode-icons@1.2.33':
     dependencies:
       '@iconify/types': 2.0.0
+
+  '@iconify/css-vue@1.0.1(vue@3.5.24(typescript@5.9.3))':
+    dependencies:
+      '@iconify/types': 2.0.0
+      vue: 3.5.24(typescript@5.9.3)
 
   '@iconify/types@2.0.0': {}
 

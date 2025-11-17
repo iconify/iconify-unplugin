@@ -17,3 +17,8 @@ export interface SplitURL {
 	// Query string (without ?)
 	query: URLSearchParams;
 }
+
+export interface NormalizedURL extends SplitURL {
+	// URL type
+	type: 'asset' | 'component';
+}
