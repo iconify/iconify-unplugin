@@ -53,9 +53,11 @@ Why is this better?
 -   Reduces HTML size, especially noticesable when the same icon is used multiple times.
 -   CSS is cached, so icon content is cached by browser instead of being included in HTML.
 
+Plugin uses hashing to generate unique class names. This prevents duplication and avoids collissions.
+
 ### Safari browser
 
-There is one issue though, currently Safari browser does not support `d` attribute for `<path />` in CSS.
+There is one issue with rendering SVG+CSS: currently Safari browser does not support `d` attribute for `<path />` in CSS.
 
 To work around this issue, components include dynamic fallback, which is loaded and rendered only for outdated browsers.
 
@@ -63,6 +65,19 @@ See [solving Safari fallback for SVG+CSS](https://cyberalien.dev/articles/safari
 
 In future, when Safari will finally join the modern browsers (hopefully soon because Safari Technology Preview supported this since 2024), fallback can be removed.
 This will make it possible to add support for more frameworks and render icons as raw HTML strings, not components.
+
+## Compilers
+
+Iconify Unplugin supports several compilers.
+
+Compilers with a fallback for Safari browser:
+
+-   `vue` - generates Vue 3 components.
+-   `svelte` - generates Svelte 5 components (uses runes).
+
+Compilers without a fallback, so icons will work only in modern browsers:
+
+-   `raw` - generates icon as string, can be used in with framework (see `vite-vue` and `vite-svelte` examples for usage).
 
 ## Installation
 
