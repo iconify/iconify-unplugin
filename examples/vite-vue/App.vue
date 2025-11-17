@@ -16,9 +16,10 @@ import bellIconRaw from '/~iconify/mdi-light/bell?compiler=raw&height=1.5em';
 			<BellIconFixedSize />
 		</p>
 		<p>
-			Raw SVG, 1.5em fixed height:
+			Raw SVG, 1.5em fixed height + code:
 			<span v-html="bellIconRaw"></span>
 		</p>
+		<pre>{{ bellIconRaw }}</pre>
 	</main>
 </template>
 

@@ -1,22 +1,22 @@
 {
-	"name": "vite-vue3-example",
+	"name": "vite-svelte",
 	"type": "module",
 	"private": true,
-	"description": "unplugin-icons + Vue3 (Vite)",
+	"description": "unplugin-icons + Svelte (Vite)",
 	"scripts": {
-		"dev": "vite",
 		"build": "vite build",
+		"dev": "vite",
 		"serve": "npm run build && vite preview"
-	},
-	"dependencies": {
-		"vue": "^3.5.24"
 	},
 	"devDependencies": {
 		"@iconify-json/mdi-light": "^1.2.2",
-		"@iconify/css-vue": "^1.0.1",
-		"@vitejs/plugin-vue": "^6.0.1",
+		"@iconify/css-svelte": "^1.0.0",
+		"@sveltejs/vite-plugin-svelte": "^6.2.1",
+		"@tsconfig/svelte": "^5.0.6",
+		"svelte": "^5.43.8",
+		"svelte-check": "^4.3.4",
+		"svelte-preprocess": "^6.0.3",
 		"typescript": "^5.9.3",
-		"unconfig": "^7.4.1",
 		"unplugin-iconify": "workspace:*",
 		"vite": "^7.2.2"
 	},

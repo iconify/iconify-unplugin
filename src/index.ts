@@ -77,7 +77,7 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 
 				// Compile component
 				// console.log('generating:', cleanPath, 'with', icon);
-				const component = compileComponent(
+				const component = await compileComponent(
 					icon,
 					cleanPath,
 					fullOptions
