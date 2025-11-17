@@ -21,7 +21,7 @@ export interface CleanedPluginOptions {
 	/**
 	 * Cache directory for generated assets, relative to project root
 	 *
-	 * Default: '.unplugin-iconify' in nearest 'node_modules' directory
+	 * Default: '.iconify-unplugin' in nearest 'node_modules' directory
 	 */
 	cacheDir?: string;
 

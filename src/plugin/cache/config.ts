@@ -105,7 +105,7 @@ async function init(dir?: string): Promise<void> {
 		try {
 			const stats = await lstat(dir);
 			if (stats.isDirectory()) {
-				const testDir = dir + '/.unplugin-iconify';
+				const testDir = dir + '/.iconify-unplugin';
 				if (
 					(await tryCreateDir(testDir)) &&
 					(await tryCreateTestFile(testDir))

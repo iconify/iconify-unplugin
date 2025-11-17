@@ -1,4 +1,3 @@
-import type { IconifyJSON } from '@iconify/types';
 import { getPackageInfo } from 'local-pkg';
 
 const pathCache: Record<string, string | null> = {};
