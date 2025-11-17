@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BellIcon from 'virtual:iconify/mdi-light/bell';
 import BellIconFixedSize from 'virtual:iconify/mdi-light/bell?height=1.5em';
-import bellIconRaw from '/~iconify/mdi-light/bell?compiler=raw&height=1.5em';
+import bellIconRaw from '~iconify-raw/mdi-light/bell?height=1.5em';
 </script>
 
 <template>

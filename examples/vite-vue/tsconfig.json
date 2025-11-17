@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"rootDir": ".",
+		"target": "ESNext",
+		"module": "NodeNext",
+		"declaration": false,
+		"sourceMap": false,
+		"strict": false,
+		"moduleResolution": "nodenext",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"types": ["@iconify/unplugin/types/vue", "./types.d.ts"]
+	}
+}

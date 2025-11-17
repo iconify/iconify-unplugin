@@ -8,6 +8,10 @@ const config: UserConfig = {
 		Icons({
 			compiler: 'vue',
 		}),
+		Icons({
+			compiler: 'raw',
+			namespace: 'iconify-raw',
+		}),
 	],
 };
 

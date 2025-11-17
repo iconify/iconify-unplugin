@@ -1,7 +1,7 @@
 {
 	"name": "@iconify/unplugin",
 	"type": "module",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"packageManager": "pnpm@10.22.0",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
@@ -48,22 +48,6 @@
 			"import": "./dist/types.mjs",
 			"require": "./dist/types.cjs"
 		},
-		"./types/raw": {
-			"import": "./dist/types/raw.mjs",
-			"require": "./dist/types/raw.cjs"
-		},
-		"./types/react": {
-			"import": "./dist/types/react.mjs",
-			"require": "./dist/types/react.cjs"
-		},
-		"./types/svelte": {
-			"import": "./dist/types/svelte.mjs",
-			"require": "./dist/types/svelte.cjs"
-		},
-		"./types/vue": {
-			"import": "./dist/types/vue.mjs",
-			"require": "./dist/types/vue.cjs"
-		},
 		"./vite": {
 			"import": "./dist/vite.mjs",
 			"require": "./dist/vite.cjs"
@@ -71,6 +55,18 @@
 		"./webpack": {
 			"import": "./dist/webpack.mjs",
 			"require": "./dist/webpack.cjs"
+		},
+		"./types/raw": {
+			"types": "./types/raw.d.ts"
+		},
+		"./types/react": {
+			"types": "./types/react.d.ts"
+		},
+		"./types/svelte": {
+			"types": "./types/svelte.d.ts"
+		},
+		"./types/vue": {
+			"types": "./types/vue.d.ts"
 		},
 		"./package.json": "./package.json"
 	},
@@ -84,16 +80,16 @@
 		"test": "vitest"
 	},
 	"dependencies": {
+		"@cyberalien/svg-utils": "^1.0.7",
 		"@iconify/types": "^2.0.0",
 		"local-pkg": "^1.1.2",
 		"unplugin": "^2.3.10"
 	},
 	"devDependencies": {
-		"@cyberalien/svg-utils": "^1.0.7",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.10.1",
 		"tsdown": "^0.16.5",
 		"typescript": "^5.9.3",
-		"vitest": "^4.0.9"
+		"vitest": "^4.0.10"
 	}
 }
