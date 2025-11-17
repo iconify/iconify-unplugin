@@ -11,13 +11,13 @@
 	"devDependencies": {
 		"@iconify-json/mdi-light": "^1.2.2",
 		"@iconify/css-svelte": "^1.0.0",
+		"@iconify/unplugin": "workspace:*",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
 		"@tsconfig/svelte": "^5.0.6",
 		"svelte": "^5.43.8",
 		"svelte-check": "^4.3.4",
 		"svelte-preprocess": "^6.0.3",
 		"typescript": "^5.9.3",
-		"unplugin-iconify": "workspace:*",
 		"vite": "^7.2.2"
 	},
 	"stackblitz": {

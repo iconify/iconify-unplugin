@@ -1,16 +1,16 @@
 {
-	"name": "unplugin-iconify",
+	"name": "@iconify/unplugin",
 	"type": "module",
 	"version": "0.0.1",
 	"packageManager": "pnpm@10.22.0",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
 	"license": "MIT",
-	"bugs": "https://github.com/iconify/unplugin-iconify/issues",
+	"bugs": "https://github.com/iconify/iconify-unplugin/issues",
 	"homepage": "https://iconify.design/",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/iconify/unplugin-iconify.git"
+		"url": "https://github.com/iconify/iconify-unplugin.git"
 	},
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",

@@ -1,6 +1,6 @@
 import type { UserConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
-import Icons from 'unplugin-iconify/vite';
+import Icons from '@iconify/unplugin/vite';
 
 const config: UserConfig = {
 	plugins: [
