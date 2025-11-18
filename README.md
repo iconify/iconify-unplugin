@@ -75,6 +75,7 @@ Compilers with a fallback for Safari browser:
 -   `vue` - generates Vue 3 components.
 -   `svelte` - generates Svelte 5 components (uses runes).
 -   `react` - generates React components.
+-   `preact` - generates Preact components.
 
 Compilers without a fallback, so icons will work only in modern browsers:
 

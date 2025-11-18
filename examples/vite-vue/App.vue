@@ -6,7 +6,7 @@ import bellIconRaw from '~iconify-raw/mdi-light/bell?height=1.5em';
 
 <template>
 	<main>
-		<h1>Icons test</h1>
+		<h1>Icons test (vite-vue)</h1>
 		<p>
 			Vue component with fallback, height as prop:
 			<BellIcon height="1.5em" />

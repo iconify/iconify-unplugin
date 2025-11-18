@@ -1,13 +1,11 @@
-import React from 'react';
 import BellIcon from 'virtual:iconify/mdi-light/bell';
 import BellIconFixedSize from 'virtual:iconify/mdi-light/bell?height=1.5em';
 import bellIconRaw from '~iconify-raw/mdi-light/bell?height=1.5em';
-import './App.css';
 
-function App() {
+export function App() {
 	return (
 		<main>
-			<h1>Icons test (vite-react)</h1>
+			<h1>Icons test (vite-preact)</h1>
 			<p>
 				Vue component with fallback, height as prop:
 				<BellIcon height="1.5em" />
@@ -24,5 +22,3 @@ function App() {
 		</main>
 	);
 }
-
-export default App;

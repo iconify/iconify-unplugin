@@ -73,6 +73,13 @@ export async function compileComponent(
 				jsx: 'react',
 				fallbackPackage: '@iconify/css-react',
 			});
+
+		case 'preact':
+			return createJSXComponent(icon, {
+				...factoryOptions,
+				jsx: 'preact',
+				fallbackPackage: '@iconify/css-react',
+			});
 	}
 
 	return;

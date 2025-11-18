@@ -1,7 +1,7 @@
 {
 	"name": "@iconify/unplugin",
 	"type": "module",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"packageManager": "pnpm@10.22.0",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
@@ -57,6 +57,9 @@
 			"import": "./dist/webpack.mjs",
 			"require": "./dist/webpack.cjs"
 		},
+		"./types/preact": {
+			"types": "./types/preact.d.ts"
+		},
 		"./types/raw": {
 			"types": "./types/raw.d.ts"
 		},
@@ -81,7 +84,7 @@
 		"test": "vitest"
 	},
 	"dependencies": {
-		"@cyberalien/svg-utils": "^1.0.8",
+		"@cyberalien/svg-utils": "^1.0.9",
 		"@iconify/types": "^2.0.0",
 		"local-pkg": "^1.1.2",
 		"unplugin": "^2.3.10"
