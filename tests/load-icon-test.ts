@@ -8,7 +8,10 @@ describe('Load icon', () => {
 
 	it('Iconify icon', async () => {
 		// Load icon
-		const icon = await loadIcon('mdi-light', 'bell', { allowAPI: false });
+		const icon = await loadIcon('mdi-light', 'bell', {
+			allowAPI: false,
+			mode: 'svg+css',
+		});
 		expect(icon).toBeTruthy();
 		expect(icon!.prefix).toBe('mdi-light');
 		expect(icon!.name).toBe('bell');
@@ -29,7 +32,10 @@ describe('Load icon', () => {
 
 	it('Iconify icon from API', async () => {
 		// Load icon. No package, so should be loaded from API
-		const icon = await loadIcon('quill', 'cog', { allowAPI: true });
+		const icon = await loadIcon('quill', 'cog', {
+			allowAPI: true,
+			mode: 'svg+css',
+		});
 		expect(icon).toBeTruthy();
 		expect(icon!.prefix).toBe('quill');
 		expect(icon!.name).toBe('cog');
@@ -43,7 +49,10 @@ describe('Load icon', () => {
 	});
 
 	it('Missing icon', async () => {
-		const icon = await loadIcon('mdi-lighter', 'bell', { allowAPI: false });
+		const icon = await loadIcon('mdi-lighter', 'bell', {
+			allowAPI: false,
+			mode: 'svg+css',
+		});
 		expect(icon).toBeNull();
 	});
 });

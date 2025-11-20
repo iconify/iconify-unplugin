@@ -1,6 +1,6 @@
 import type { CSSHashOptions } from '@cyberalien/svg-utils/lib/css/types.js';
 import type { ComponentCompiler } from './compiler.js';
-import type { IconMode } from './mode.js';
+import type { IconCSSMode, IconMode } from './mode.js';
 
 export interface CleanedPluginOptions {
 	/**
@@ -25,6 +25,13 @@ export interface CleanedPluginOptions {
 	 * Default: 'svg+css'
 	 */
 	mode?: IconMode;
+
+	/**
+	 * CSS mode for 'svg+css' rendering mode
+	 *
+	 * Default: 'import'
+	 */
+	css?: IconCSSMode;
 
 	/**
 	 * Cache directory for generated assets, relative to project root

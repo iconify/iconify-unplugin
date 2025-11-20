@@ -23,12 +23,15 @@ export function normaliseURL(
 	// Check reserved directories
 	switch (normalisedURL.directory) {
 		case cssDirectory:
-			return normalisedURL.extension === 'css'
-				? {
+			switch (normalisedURL.extension) {
+				case 'css':
+				case 'module.css':
+					return {
 						...normalisedURL,
 						type: 'asset',
-				  }
-				: undefined;
+					};
+			}
+			return;
 
 		case helpersDirectory:
 			switch (normalisedURL.extension) {

@@ -1,4 +1,4 @@
-import type { IconMode } from '../types/mode.js';
+import type { IconCSSMode, IconMode } from '../types/mode.js';
 
 /**
  * Clean up fallback parameter
@@ -56,4 +56,22 @@ export function getIconRenderingMode(
 	}
 
 	return defaultMode ?? 'svg+css';
+}
+
+/**
+ * Get icon rendering mode
+ */
+export function getIconCSSRenderingMode(
+	query: URLSearchParams,
+	defaultMode?: IconCSSMode
+): IconCSSMode {
+	const value = query.get('css');
+	switch (value) {
+		case 'import':
+		case 'module':
+		case 'embed':
+			return value;
+	}
+
+	return defaultMode ?? 'import';
 }

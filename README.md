@@ -134,6 +134,7 @@ Plugin accepts the following options:
 -   compiler: default "compiler" value for icons.
 -   namespace: change URL from "iconify" to something else, allowing you to use multiple instances of plugin with different options.
 -   mode: rendering mode, default is "svg+css". Supported values are "svg+css" and "svg" to render full SVG.
+-   css: rendering mode for stylesheet, default is "import".
 
 See `src/plugin/types/options.ts` for full list of options.
 
@@ -141,6 +142,16 @@ Most of these options are used in examples. See "examples" directory.
 
 Some of these options can be overwritten for each icon by adding URL parameters.
 If both URL parameter and config value are set, URL parameter is used.
+
+### CSS modes
+
+Plugin supports several modes for rendering SVG+CSS icons, which can be set in "css" option or URL parameter:
+
+-   "import": styles are split in separate files, imported from package. This reduces duplication.
+-   "module": uses CSS modules. This is not advised because it generates much longer class names without providing any benefit. However, some frameworks, such as Next.js and Qwik, intentionally do not support importing css files, so this is an option if you are using one of those frameworks.
+-   "embed": embeds CSS in SVG using `<style>` tag.
+
+Default value is "import".
 
 ## Icon sets
 

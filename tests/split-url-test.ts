@@ -69,6 +69,30 @@ describe('Split and merge URLs', () => {
 		const normalised3 = normaliseURL(split3!, 'vue');
 		expect(normalised3!.type).toBe('asset');
 		expect(mergeURL(normalised3!)).toBe(`/~test/mdi-light/bell.d.ts`);
+
+		// CSS module
+		const split4 = splitURL(
+			`~iconify/${cssDirectory}/test.module.css`,
+			'iconify'
+		);
+		expect(split4).toEqual({
+			prefix: '~',
+			namespace: 'iconify',
+			directory: cssDirectory,
+			filename: 'test',
+			extension: 'module.css',
+			query: new URLSearchParams(),
+		});
+		expect(mergeURL(split4!)).toBe(
+			`/~iconify/${cssDirectory}/test.module.css`
+		);
+
+		// Normalise URL (should not change anything because of reserved directory)
+		const normalised4 = normaliseURL(split4!, 'svelte');
+		expect(normalised4!.type).toBe('asset');
+		expect(mergeURL(normalised4!)).toBe(
+			`/~iconify/${cssDirectory}/test.module.css`
+		);
 	});
 
 	it('Valid URLs', () => {

@@ -8,7 +8,7 @@ import type { LoadedIconData } from '../types/icon.js';
 import type { CleanedPluginOptions } from '../types/options.js';
 import type { NormalizedURL } from '../types/urls.js';
 import { createComponentFactoryOptions } from './options.js';
-import { getBooleanParam } from '../url/params.js';
+import { getBooleanParam, getIconCSSRenderingMode } from '../url/params.js';
 import { compileSvelteComponent } from './svelte.js';
 
 /**
@@ -21,6 +21,9 @@ export async function compileComponent(
 ): Promise<FactoryGeneratedComponent | undefined> {
 	// Get options
 	const factoryOptions = createComponentFactoryOptions(options.namespace);
+
+	// Get CSS mode
+	factoryOptions.cssMode = getIconCSSRenderingMode(path.query, options.css);
 
 	// Check props
 	const query = path.query;

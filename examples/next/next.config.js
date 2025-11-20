@@ -7,7 +7,7 @@ module.exports = {
 		config.plugins.push(
 			Icons({
 				compiler: 'react',
-				mode: 'svg',
+				css: 'module',
 			}),
 			Icons({
 				compiler: 'raw',

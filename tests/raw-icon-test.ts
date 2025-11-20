@@ -13,7 +13,10 @@ describe('Render raw icon', () => {
 		const options = createComponentFactoryOptions('iconify');
 
 		// Load icon
-		const icon = await loadIcon('mdi-light', 'bell', { allowAPI: false });
+		const icon = await loadIcon('mdi-light', 'bell', {
+			allowAPI: false,
+			mode: 'svg+css',
+		});
 		if (!icon) {
 			throw new Error('Icon not loaded');
 		}
