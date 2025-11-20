@@ -1,7 +1,7 @@
 {
 	"name": "@iconify/unplugin",
 	"type": "module",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"packageManager": "pnpm@10.22.0",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
@@ -92,7 +92,7 @@
 	"devDependencies": {
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.10.1",
-		"tsdown": "^0.16.5",
+		"tsdown": "^0.16.6",
 		"typescript": "^5.9.3",
 		"vitest": "^4.0.10"
 	}

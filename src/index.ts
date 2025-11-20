@@ -8,7 +8,7 @@ import { readFromCache } from './plugin/cache/read.js';
 import { cleanUpOptions } from './plugin/helpers/options.js';
 import { loadIcon } from './plugin/icon/load.js';
 import { isIconAsset } from './plugin/icon/path.js';
-import { getFallbackParam } from './plugin/url/params.js';
+import { getFallbackParam, getIconRenderingMode } from './plugin/url/params.js';
 import { compileComponent } from './plugin/component/compile.js';
 import { prepareComponentForRender } from './plugin/component/stringify.js';
 import { assertDepenecyExists } from './plugin/component/deps.js';
@@ -60,16 +60,23 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 					);
 				}
 
-				// Load icon
+				// Get icon name
 				const iconName = isIconAsset(cleanPath);
 				if (!iconName) {
 					throw new Error(
 						`Invalid icon path: ${mergeURL(cleanPath)}`
 					);
 				}
+
+				// Get rendering mode and load icon
+				const mode = getIconRenderingMode(
+					cleanPath.query,
+					fullOptions.mode
+				);
 				const icon = await loadIcon(iconName.prefix, iconName.name, {
 					...fullOptions,
 					fallback: getFallbackParam(cleanPath.query),
+					mode,
 				});
 				if (!icon) {
 					throw new Error(`Icon not found: ${mergeURL(cleanPath)}`);

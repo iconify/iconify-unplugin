@@ -1,5 +1,6 @@
 import type { CSSHashOptions } from '@cyberalien/svg-utils/lib/css/types.js';
 import type { ComponentCompiler } from './compiler.js';
+import type { IconMode } from './mode.js';
 
 export interface CleanedPluginOptions {
 	/**
@@ -17,6 +18,11 @@ export interface CleanedPluginOptions {
 	 * Can be overwritten for each icon by URL query parameter `compiler` or by file extension
 	 */
 	compiler?: ComponentCompiler;
+
+	/**
+	 * Icon rendering mode
+	 */
+	mode?: IconMode;
 
 	/**
 	 * Cache directory for generated assets, relative to project root

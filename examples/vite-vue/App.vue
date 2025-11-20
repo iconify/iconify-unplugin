@@ -2,6 +2,7 @@
 import BellIcon from 'virtual:iconify/mdi-light/bell';
 import BellIconFixedSize from 'virtual:iconify/mdi-light/bell?height=1.5em';
 import bellIconRaw from '~iconify-raw/mdi-light/bell?height=1.5em';
+import bellIconRaw2 from '~iconify-raw/mdi-light/bell?height=1.5em&mode=svg';
 </script>
 
 <template>
@@ -19,7 +20,9 @@ import bellIconRaw from '~iconify-raw/mdi-light/bell?height=1.5em';
 			Raw SVG, 1.5em fixed height + code:
 			<span v-html="bellIconRaw"></span>
 		</p>
+		<p>Icon code (svg+css and full svg)</p>
 		<pre>{{ bellIconRaw }}</pre>
+		<pre>{{ bellIconRaw2 }}</pre>
 	</main>
 </template>
 

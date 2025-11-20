@@ -1,15 +1,14 @@
 {
-	"name": "vite-react-example",
-	"type": "module",
-	"version": "0.0.0",
+	"name": "next-example",
 	"private": true,
-	"description": "unplugin-icons + React (Vite)",
+	"description": "unplugin-icons + Next",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"serve": "vite preview"
+		"dev": "next dev --webpack",
+		"build": "next build --webpack",
+		"start": "next start --webpack"
 	},
 	"dependencies": {
+		"next": "^16.0.3",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0"
 	},
@@ -17,11 +16,9 @@
 		"@iconify-json/mdi-light": "^1.2.2",
 		"@iconify/css-react": "^1.0.0",
 		"@iconify/unplugin": "workspace:*",
+		"@types/node": "^24.10.1",
 		"@types/react": "^19.2.6",
-		"@types/react-dom": "^19.2.3",
-		"@vitejs/plugin-react-refresh": "^1.3.6",
-		"typescript": "^5.9.3",
-		"vite": "^7.2.4"
+		"typescript": "^5.9.3"
 	},
 	"stackblitz": {
 		"installDependencies": false,

@@ -1,3 +1,5 @@
+import type { IconMode } from '../types/mode.js';
+
 /**
  * Clean up fallback parameter
  */
@@ -33,4 +35,25 @@ export function getBooleanParam<T>(
 		default:
 			return defaultValue;
 	}
+}
+
+/**
+ * Get icon rendering mode
+ */
+export function getIconRenderingMode(
+	query: URLSearchParams,
+	defaultMode?: IconMode
+): IconMode {
+	const value = query.get('mode');
+	switch (value) {
+		case 'svg':
+		case 'svg+css':
+			return value;
+
+		case 'svg_css':
+		case 'svgcss':
+			return 'svg+css';
+	}
+
+	return defaultMode ?? 'svg+css';
 }

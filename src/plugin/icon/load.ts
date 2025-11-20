@@ -6,10 +6,15 @@ import { convertIconifyIcon } from './convert.js';
 import type { PluginOptions } from '../types/options.js';
 import type { ConvertSVGContentOptions } from '@cyberalien/svg-utils/lib/svg-css/types.js';
 import { defaultCSSHashOptions } from './svg-css/config.js';
+import type { IconMode } from '../types/mode.js';
+import type { IconifyIcon } from '@iconify/types';
 
 interface Options extends Pick<PluginOptions, 'allowAPI' | 'cssHash'> {
 	// Custom fallback icon name, in format 'prefix:name'
 	fallback?: string;
+
+	// Rendering mode
+	mode: IconMode;
 }
 
 /**
@@ -55,6 +60,7 @@ export async function loadIcon(
 					isIconify: iconSet.isIconify,
 				},
 				options: convertOptions,
+				mode: options.mode,
 			});
 		}
 	}
@@ -71,6 +77,7 @@ export async function loadIcon(
 					isIconify: true,
 				},
 				options: convertOptions,
+				mode: options.mode,
 			});
 		}
 	}
