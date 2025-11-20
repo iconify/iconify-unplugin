@@ -66,6 +66,19 @@ See [solving Safari fallback for SVG+CSS](https://cyberalien.dev/articles/safari
 In future, when Safari will finally join the modern browsers (hopefully soon because Safari Technology Preview supported this since 2024), fallback can be removed.
 This will make it possible to add support for more frameworks and render icons as raw HTML strings, not components.
 
+#### Fallback packages
+
+To support Safari browser, you need to install the following dev dependencies:
+
+-   For Vue: `@iconify/css-vue`
+-   For Svelte: `@iconify/css-svelte`
+-   For React and Preact: `@iconify/css-react`
+
+There are no fallback components for other frameworks. If you are not using frameworks listed above, your options are:
+
+-   Ignore Safari users (bad option).
+-   Render full SVG instead of SVG+CSS (see plugin options below).
+
 ## Compilers
 
 Iconify Unplugin supports several compilers.
@@ -109,13 +122,25 @@ export default defineConfig({
 });
 ```
 
-### Framework specific fallbacks
+Syntax for other bundlers is similar to example above:
 
-To support Safari browser, you need to install the following dev dependencies:
+-   Replace "vite" with bundler name. Supported bundlers: "esbuild", "farm", "rollup", "rspack", "webpack".
+-   Add plugin to plugins list. Plugin options are the same for all bundlers.
 
--   For Vue: `@iconify/css-vue`
--   For Svelte: `@iconify/css-svelte`
--   For React: `@iconify/css-react`
+## Plugin options
+
+Plugin accepts the following options:
+
+-   compiler: default "compiler" value for icons.
+-   namespace: change URL from "iconify" to something else, allowing you to use multiple instances of plugin with different options.
+-   mode: rendering mode, default is "svg+css". Supported values are "svg+css" and "svg" to render full SVG.
+
+See `src/plugin/types/options.ts` for full list of options.
+
+Most of these options are used in examples. See "examples" directory.
+
+Some of these options can be overwritten for each icon by adding URL parameters.
+If both URL parameter and config value are set, URL parameter is used.
 
 ## Icon sets
 

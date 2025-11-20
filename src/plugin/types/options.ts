@@ -21,6 +21,8 @@ export interface CleanedPluginOptions {
 
 	/**
 	 * Icon rendering mode
+	 *
+	 * Default: 'svg+css'
 	 */
 	mode?: IconMode;
 
