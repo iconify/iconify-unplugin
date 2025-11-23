@@ -175,6 +175,14 @@ Select icon and you'll see an option to copy icon name.
 
 Then use that icon as component.
 
+Additionally, instead of `/~iconify/` prefix for icon names, you can use:
+
+-   `virtual:iconify/` - not supported by webpack
+-   `/virtual:iconify/` - not supported by webpack
+
+You can also change `iconify` part to anything else by setting `namespace` option to plugin (see examples in `examples` directory),
+which can be used to run multiple instances of plugin with different options.
+
 ### Vue example
 
 ```vue
