@@ -107,6 +107,8 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 					component,
 					fullOptions.namespace
 				);
+				// console.log(`Generated content for ${mergeURL(cleanPath)}:`);
+				// console.log(content);
 				return {
 					code: content,
 					map: { version: 3, mappings: '', sources: [] } as any,
