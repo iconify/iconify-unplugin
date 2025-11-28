@@ -27,7 +27,7 @@ describe('Load icon', () => {
 		});
 		const classNames = Object.keys(icon!.icon.classes!);
 		expect(classNames.length).toBe(1);
-		expect(icon!.icon.content).toBe(`<path class="${classNames[0]}" />`);
+		expect(icon!.icon.content).toBe(`<path class="${classNames[0]}"/>`);
 	});
 
 	it('Iconify icon from API', async () => {

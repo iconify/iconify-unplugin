@@ -2,7 +2,7 @@
 	"name": "@iconify/unplugin",
 	"type": "module",
 	"version": "0.0.6",
-	"packageManager": "pnpm@10.23.0",
+	"packageManager": "pnpm@10.24.0",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
 	"funding": "https://github.com/sponsors/cyberalien",
@@ -84,7 +84,7 @@
 		"test": "vitest"
 	},
 	"dependencies": {
-		"@cyberalien/svg-utils": "^1.0.10",
+		"@cyberalien/svg-utils": "^1.0.11",
 		"@iconify/types": "^2.0.0",
 		"local-pkg": "^1.1.2",
 		"unplugin": "^2.3.11"
@@ -92,8 +92,8 @@
 	"devDependencies": {
 		"@types/jest": "^30.0.0",
 		"@types/node": "^24.10.1",
-		"tsdown": "^0.16.6",
+		"tsdown": "^0.16.8",
 		"typescript": "^5.9.3",
-		"vitest": "^4.0.13"
+		"vitest": "^4.0.14"
 	}
 }

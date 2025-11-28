@@ -9,7 +9,7 @@
 		"serve": "npm run build && vite preview"
 	},
 	"dependencies": {
-		"vue": "^3.5.24"
+		"vue": "^3.5.25"
 	},
 	"devDependencies": {
 		"@iconify-json/mdi-light": "^1.2.2",
