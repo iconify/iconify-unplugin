@@ -87,7 +87,7 @@
 		"@cyberalien/svg-utils": "^1.0.11",
 		"@iconify/types": "^2.0.0",
 		"local-pkg": "^1.1.2",
-		"unplugin": "^2.3.11"
+		"unplugin": "^3.0.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^30.0.0",
