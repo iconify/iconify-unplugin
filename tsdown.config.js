@@ -21,5 +21,8 @@ export default defineConfig({
 		'svelte',
 		'svelte/compiler',
 		'vue',
+		'rollup',
+		'esbuild',
+		'vite',
 	],
 });
