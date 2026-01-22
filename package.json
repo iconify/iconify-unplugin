@@ -1,7 +1,7 @@
 {
 	"name": "@iconify/unplugin",
 	"type": "module",
-	"version": "0.0.6",
+	"version": "0.1.0",
 	"packageManager": "pnpm@10.28.1",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
