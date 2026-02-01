@@ -5,9 +5,8 @@ import { loadIconFromAPI } from './api.js';
 import { convertIconifyIcon } from './convert.js';
 import type { PluginOptions } from '../types/options.js';
 import type { ConvertSVGContentOptions } from '@cyberalien/svg-utils/lib/svg-css/types.js';
-import { defaultCSSHashOptions } from './svg-css/config.js';
+import { defaultCSSHashOptions } from '../helpers/config.js';
 import type { IconMode } from '../types/mode.js';
-import type { IconifyIcon } from '@iconify/types';
 
 interface Options extends Pick<PluginOptions, 'allowAPI' | 'cssHash'> {
 	// Custom fallback icon name, in format 'prefix:name'
@@ -37,10 +36,8 @@ export async function loadIcon(
 
 	// Options for conversion
 	const convertOptions: ConvertSVGContentOptions = {
-		hashOptions: {
-			...defaultCSSHashOptions,
-			...options.cssHash,
-		},
+		...defaultCSSHashOptions,
+		...options.cssHash,
 	};
 
 	// Get fallback icon name

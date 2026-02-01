@@ -1,4 +1,4 @@
-import { defaultCSSHashOptions } from '../icon/svg-css/config.js';
+import { defaultCSSHashOptions } from './config.js';
 import type { CleanedPluginOptions, PluginOptions } from '../types/options.js';
 
 /**

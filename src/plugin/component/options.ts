@@ -1,6 +1,7 @@
 import type { ComponentFactoryOptions } from '@cyberalien/svg-utils/lib/components/types/options.js';
 import { cssDirectory, helpersDirectory } from '../url/const.js';
 import { defaultNamespacePrefix } from '../url/namespace.js';
+import { defaultCSSHashOptions } from '../helpers/config.js';
 
 /**
  * Get component factory options
@@ -27,5 +28,6 @@ export function createComponentFactoryOptions(
 		},
 		sharedTypes: false,
 		helpersDirectory,
+		context: defaultCSSHashOptions.context,
 	};
 }
