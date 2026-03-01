@@ -47,7 +47,7 @@ async function tryCreateDir(dir: string): Promise<boolean> {
  * Create test file in directory
  */
 async function tryCreateTestFile(dir: string): Promise<boolean> {
-	const time = Date.now();
+	const time = Math.random();
 	const filename = `${dir}/test.${time}.json`;
 
 	// Create file

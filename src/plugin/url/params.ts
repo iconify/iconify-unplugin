@@ -68,7 +68,6 @@ export function getIconCSSRenderingMode(
 	const value = query.get('css');
 	switch (value) {
 		case 'import':
-		case 'module':
 		case 'embed':
 			return value;
 	}

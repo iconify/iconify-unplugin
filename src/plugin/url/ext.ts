@@ -12,6 +12,7 @@ export function getCompilerDefaultExtension(
 			return compiler;
 
 		case 'react':
+		case 'preact':
 			if (defaultExtension === 'tsx') {
 				return 'tsx';
 			}

@@ -1,16 +1,38 @@
 import type { IconifyJSON } from '@iconify/types';
 
-export type APIIconSets = Record<string, number>;
+/**
+ * Last modified time for icon sets.
+ *
+ * Key is icon set prefix, value is a number representing last update time or version
+ */
+export type APIIconSetsLastModified = Record<string, number>;
 
-export interface IconSetData {
+/**
+ * Common data for all types of icon sets
+ */
+interface CommonData {
+	// Icon set prefix
 	prefix: string;
+}
+
+/**
+ * Data in Iconify JSON format
+ */
+export interface IconifyJSONIconSetData extends CommonData {
+	// Icon set type
+	type: 'iconify';
 
 	// Full icon set data
 	data?: IconifyJSON;
 
 	// Last update data for loading from API
-	api?: number;
+	lastUpdate?: number;
 
-	// Is available on Iconify API
-	isIconify: boolean;
+	// Use fallback for icon
+	useFallback: boolean;
 }
+
+/**
+ * Combined data types
+ */
+export type IconSetData = IconifyJSONIconSetData;

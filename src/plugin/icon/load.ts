@@ -43,36 +43,31 @@ export async function loadIcon(
 	// Get fallback icon name
 	const fallback =
 		options?.fallback ??
-		(iconSet.isIconify ? `${prefix}:${name}` : undefined);
+		(iconSet.useFallback ? `${prefix}:${name}` : undefined);
 
 	if (iconSet.data) {
 		// Get icon from IconifyJSON format
 		const data = getIconifyIconSetIcon(iconSet.data, name);
 		if (data) {
 			return convertIconifyIcon(data, {
-				icon: {
-					name,
-					prefix,
-					fallback,
-					isIconify: iconSet.isIconify,
-				},
+				name,
+				prefix,
+				useFallback: iconSet.useFallback,
 				options: convertOptions,
 				mode: options.mode,
 			});
 		}
 	}
 
-	if (iconSet.isIconify && iconSet.api) {
+	if (iconSet.useFallback && iconSet.lastUpdate) {
 		// Fetch icon from API
-		const data = await loadIconFromAPI(iconSet, iconSet.api, name);
+		const data = await loadIconFromAPI(iconSet, iconSet.lastUpdate, name);
 		if (data) {
 			return convertIconifyIcon(data, {
-				icon: {
-					name,
-					prefix,
-					fallback,
-					isIconify: true,
-				},
+				name,
+				prefix,
+				fallback,
+				useFallback: true,
 				options: convertOptions,
 				mode: options.mode,
 			});

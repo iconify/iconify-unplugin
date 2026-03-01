@@ -8,7 +8,12 @@ import { defaultCSSHashOptions } from '../helpers/config.js';
 
 interface Options {
 	// Icon data
-	icon: Pick<LoadedIconData, 'prefix' | 'name' | 'fallback' | 'isIconify'>;
+	prefix: string;
+	name: string;
+	fallback?: string;
+
+	// Is available on Iconify API (for use in fallback)
+	useFallback: boolean;
 
 	// Options
 	options: ConvertSVGContentOptions;
@@ -24,28 +29,34 @@ export function convertIconifyIcon(
 	data: IconifyIcon,
 	options: Options
 ): LoadedIconData {
-	const { icon, options: convertOptions } = options;
+	const {
+		prefix,
+		name,
+		fallback,
+		useFallback,
+		options: convertOptions,
+	} = options;
 
 	if (options.mode === 'svg') {
-		// Full SVG
+		// Full SVG, no fallback
 		const { body, viewBox } = normaliseIconifyIcon(data);
 		return {
-			prefix: icon.prefix,
-			name: icon.name,
-			viewBox,
+			prefix,
+			name,
 			icon: {
+				viewBox,
 				content: body,
 			},
-			isIconify: icon.isIconify,
+			useFallback: false,
 		};
 	}
 
 	return {
-		...convertIconifyIconToFactoryContent(data, icon.prefix, icon.name, {
+		...convertIconifyIconToFactoryContent(data, prefix, name, {
 			...convertOptions,
-			fallback: icon.fallback || false,
+			fallback: fallback || useFallback,
 			context: defaultCSSHashOptions.context,
 		}),
-		isIconify: icon.isIconify,
+		useFallback,
 	};
 }

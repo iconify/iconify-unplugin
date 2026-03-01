@@ -30,9 +30,10 @@ async function load(
 				'utf8'
 			);
 			return {
+				type: 'iconify',
 				prefix,
 				data: JSON.parse(data) as IconifyJSON,
-				isIconify: true,
+				useFallback: true,
 			};
 		} catch {
 			//
@@ -47,9 +48,10 @@ async function load(
 		try {
 			const data = await readFile(`${packageRoot}/icons.json`, 'utf8');
 			return {
+				type: 'iconify',
 				prefix,
 				data: JSON.parse(data) as IconifyJSON,
-				isIconify: true,
+				useFallback: true,
 			};
 		} catch {
 			//
@@ -61,9 +63,10 @@ async function load(
 		const apiIconSets = await fetchIconifyIconSetsFromAPI();
 		if (apiIconSets?.[prefix]) {
 			return {
+				type: 'iconify',
 				prefix,
-				api: apiIconSets[prefix],
-				isIconify: true,
+				lastUpdate: apiIconSets[prefix],
+				useFallback: true,
 			};
 		}
 	}

@@ -10,6 +10,7 @@ import type { NormalizedURL } from '../types/urls.js';
 import { createComponentFactoryOptions } from './options.js';
 import { getBooleanParam, getIconCSSRenderingMode } from '../url/params.js';
 import { compileSvelteComponent } from './svelte.js';
+import type { ComponentCompiler } from '../types/compiler.js';
 
 /**
  * Compile component
@@ -32,7 +33,10 @@ export async function compileComponent(
 	if (getBooleanParam(query, 'square', false)) {
 		icon = {
 			...icon,
-			viewBox: makeSquareViewBox(icon.viewBox),
+			icon: {
+				...icon.icon,
+				viewBox: makeSquareViewBox(icon.icon.viewBox),
+			},
 		};
 	}
 
@@ -54,7 +58,7 @@ export async function compileComponent(
 	}
 
 	// Compile component
-	const compiler = query.get('compiler');
+	const compiler = query.get('compiler') as ComponentCompiler | undefined;
 	switch (compiler) {
 		case 'raw':
 			return createRawComponent(icon, factoryOptions);

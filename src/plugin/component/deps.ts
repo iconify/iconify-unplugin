@@ -11,7 +11,7 @@ export async function assertDepenecyExists(packageName: string): Promise<void> {
 
 	try {
 		await import(packageName);
-	} catch (err) {
+	} catch {
 		console.warn(
 			`To render an icon component, you need to install the following optional dependency: ${packageName}`
 		);

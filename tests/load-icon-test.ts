@@ -15,11 +15,11 @@ describe('Load icon', () => {
 		expect(icon).toBeTruthy();
 		expect(icon!.prefix).toBe('mdi-light');
 		expect(icon!.name).toBe('bell');
-		expect(icon!.isIconify).toBe(true);
-		expect(icon!.fallback).toBe('mdi-light:bell');
+		expect(icon!.useFallback).toBe(true);
+		expect(icon!.icon.defaultFallback).toBe('mdi-light:bell');
 
 		// Check icon data
-		expect(icon!.viewBox).toEqual({
+		expect(icon!.icon.viewBox).toEqual({
 			left: 0,
 			top: 0,
 			width: 24,
@@ -39,8 +39,8 @@ describe('Load icon', () => {
 		expect(icon).toBeTruthy();
 		expect(icon!.prefix).toBe('quill');
 		expect(icon!.name).toBe('cog');
-		expect(icon!.isIconify).toBe(true);
-		expect(icon!.viewBox).toEqual({
+		expect(icon!.useFallback).toBe(true);
+		expect(icon!.icon.viewBox).toEqual({
 			left: 0,
 			top: 0,
 			width: 32,
