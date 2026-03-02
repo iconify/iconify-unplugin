@@ -1,8 +1,8 @@
 {
 	"name": "@iconify/unplugin",
 	"type": "module",
-	"version": "0.1.2",
-	"packageManager": "pnpm@10.29.3",
+	"version": "0.1.3",
+	"packageManager": "pnpm@10.30.3",
 	"description": "Icon components on demand",
 	"author": "Vjacheslav Trushkin <cyberalien@gmail.com> (https://cyberalien.dev/)",
 	"funding": "https://github.com/sponsors/cyberalien",
@@ -86,15 +86,15 @@
 		"lint:fix": "oxlint --type-aware --type-check --fix"
 	},
 	"dependencies": {
-		"@cyberalien/svg-utils": "^1.2.0",
+		"@cyberalien/svg-utils": "^1.2.1",
 		"@iconify/types": "^2.0.0",
 		"local-pkg": "^1.1.2",
 		"unplugin": "^3.0.0"
 	},
 	"devDependencies": {
 		"@types/jest": "^30.0.0",
-		"@types/node": "^25.2.3",
-		"oxlint": "^1.50.0",
+		"@types/node": "^25.3.3",
+		"oxlint": "^1.51.0",
 		"oxlint-tsgolint": "^0.15.0",
 		"tsdown": "^0.20.3",
 		"typescript": "^5.9.3",

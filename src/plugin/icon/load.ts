@@ -1,4 +1,5 @@
 import { getIconifyIconSetIcon } from '@cyberalien/svg-utils/lib/iconify/icon-set/icon.js';
+import { prepareComponentFactoryStatefulIcon } from '@cyberalien/svg-utils/lib/components/prepare/states.js';
 import { loadIconSet } from '../icon-sets/load.js';
 import type { LoadedIconData } from '../types/icon.js';
 import { loadIconFromAPI } from './api.js';
@@ -7,6 +8,7 @@ import type { PluginOptions } from '../types/options.js';
 import type { ConvertSVGContentOptions } from '@cyberalien/svg-utils/lib/svg-css/types.js';
 import { defaultCSSHashOptions } from '../helpers/config.js';
 import type { IconMode } from '../types/mode.js';
+import { getSVGCSSIconFromIconSet } from '@cyberalien/svg-utils';
 
 interface Options extends Pick<PluginOptions, 'allowAPI' | 'cssHash'> {
 	// Custom fallback icon name, in format 'prefix:name'
@@ -15,6 +17,9 @@ interface Options extends Pick<PluginOptions, 'allowAPI' | 'cssHash'> {
 	// Rendering mode
 	mode: IconMode;
 }
+
+// Do not load the following icon sets from API
+const skipAPIForPrefixes = ['line-md'];
 
 /**
  * Load icon
@@ -34,6 +39,22 @@ export async function loadIcon(
 		return null;
 	}
 
+	// Check for CSS icon
+	if (options.mode !== 'svg' && iconSet.cssData) {
+		const cssIcon = getSVGCSSIconFromIconSet(iconSet.cssData, name);
+		const icon = cssIcon
+			? prepareComponentFactoryStatefulIcon(cssIcon)
+			: null;
+		if (icon) {
+			return {
+				prefix,
+				name,
+				icon,
+				useFallback: iconSet.useFallback,
+			};
+		}
+	}
+
 	// Options for conversion
 	const convertOptions: ConvertSVGContentOptions = {
 		...defaultCSSHashOptions,
@@ -45,9 +66,9 @@ export async function loadIcon(
 		options?.fallback ??
 		(iconSet.useFallback ? `${prefix}:${name}` : undefined);
 
-	if (iconSet.data) {
+	if (iconSet.iconifyData) {
 		// Get icon from IconifyJSON format
-		const data = getIconifyIconSetIcon(iconSet.data, name);
+		const data = getIconifyIconSetIcon(iconSet.iconifyData, name);
 		if (data) {
 			return convertIconifyIcon(data, {
 				name,
@@ -59,7 +80,11 @@ export async function loadIcon(
 		}
 	}
 
-	if (iconSet.useFallback && iconSet.lastUpdate) {
+	if (
+		iconSet.useFallback &&
+		iconSet.lastUpdate &&
+		!skipAPIForPrefixes.includes(prefix)
+	) {
 		// Fetch icon from API
 		const data = await loadIconFromAPI(iconSet, iconSet.lastUpdate, name);
 		if (data) {

@@ -1,3 +1,4 @@
+import type { SVGCSSIconSet } from '@cyberalien/svg-utils';
 import type { IconifyJSON } from '@iconify/types';
 
 /**
@@ -8,22 +9,17 @@ import type { IconifyJSON } from '@iconify/types';
 export type APIIconSetsLastModified = Record<string, number>;
 
 /**
- * Common data for all types of icon sets
- */
-interface CommonData {
-	// Icon set prefix
-	prefix: string;
-}
-
-/**
  * Data in Iconify JSON format
  */
-export interface IconifyJSONIconSetData extends CommonData {
-	// Icon set type
-	type: 'iconify';
+export interface IconSetData {
+	// Icon set prefix
+	prefix: string;
 
-	// Full icon set data
-	data?: IconifyJSON;
+	// Full icon set data in Iconify JSON format (if available)
+	iconifyData?: IconifyJSON;
+
+	// Full icon set data in SVGCSSIconSet format (if available)
+	cssData?: SVGCSSIconSet;
 
 	// Last update data for loading from API
 	lastUpdate?: number;
@@ -31,8 +27,3 @@ export interface IconifyJSONIconSetData extends CommonData {
 	// Use fallback for icon
 	useFallback: boolean;
 }
-
-/**
- * Combined data types
- */
-export type IconSetData = IconifyJSONIconSetData;

@@ -1,8 +1,18 @@
 body {
 	padding: 0 16px;
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-family:
+		-apple-system,
+		BlinkMacSystemFont,
+		Segoe UI,
+		Roboto,
+		Oxygen,
+		Ubuntu,
+		Cantarell,
+		Fira Sans,
+		Droid Sans,
+		Helvetica Neue,
+		sans-serif;
 }
 
 p {
@@ -10,6 +20,10 @@ p {
 	line-height: 24px;
 	color: #000;
 }
+p.warning,
 p:hover {
 	color: red;
+}
+pre {
+	white-space: pre-wrap;
 }

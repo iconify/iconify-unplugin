@@ -7,12 +7,12 @@ module.exports = {
 		config.plugins.push(
 			Icons({
 				compiler: 'react',
-				css: 'module',
+				css: 'embed',
 			}),
 			Icons({
 				compiler: 'raw',
 				namespace: 'iconify-raw',
-				mode: 'svg',
+				css: 'embed',
 			})
 		);
 		return config;

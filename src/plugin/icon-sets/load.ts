@@ -4,9 +4,21 @@ import { getPackageRootPath } from './package.js';
 import type { IconSetData } from '../types/icon-set.js';
 import { uniquePromise } from '@cyberalien/svg-utils/lib/helpers/misc/promises.js';
 import { fetchIconifyIconSetsFromAPI } from './api.js';
+import type { SVGCSSIconSet } from '@cyberalien/svg-utils';
 
 // Cache for loaded icon sets
 const cache: Record<string, IconSetData | null> = {};
+
+/**
+ * Load file if possible
+ */
+async function tryLoadJSON<T>(filename: string): Promise<T | undefined> {
+	try {
+		return JSON.parse(await readFile(filename, 'utf8')) as T;
+	} catch {
+		//
+	}
+}
 
 /**
  * Load icon set
@@ -25,14 +37,17 @@ async function load(
 	if (fullPackage) {
 		// Load icon set
 		try {
-			const data = await readFile(
-				`${fullPackage}/icon-sets/${prefix}.json`,
-				'utf8'
+			const iconifyData: IconifyJSON = JSON.parse(
+				await readFile(`${fullPackage}/json/${prefix}.json`, 'utf8')
 			);
+			const cssData = await tryLoadJSON<SVGCSSIconSet>(
+				`${fullPackage}/css/${prefix}.json`
+			);
+
 			return {
-				type: 'iconify',
 				prefix,
-				data: JSON.parse(data) as IconifyJSON,
+				iconifyData,
+				cssData,
 				useFallback: true,
 			};
 		} catch {
@@ -46,11 +61,16 @@ async function load(
 	if (packageRoot) {
 		// Load icon set
 		try {
-			const data = await readFile(`${packageRoot}/icons.json`, 'utf8');
+			const iconifyData: IconifyJSON = JSON.parse(
+				await readFile(`${packageRoot}/icons.json`, 'utf8')
+			);
+			const cssData = await tryLoadJSON<SVGCSSIconSet>(
+				`${packageRoot}/css.json`
+			);
 			return {
-				type: 'iconify',
 				prefix,
-				data: JSON.parse(data) as IconifyJSON,
+				iconifyData,
+				cssData,
 				useFallback: true,
 			};
 		} catch {
@@ -63,7 +83,6 @@ async function load(
 		const apiIconSets = await fetchIconifyIconSetsFromAPI();
 		if (apiIconSets?.[prefix]) {
 			return {
-				type: 'iconify',
 				prefix,
 				lastUpdate: apiIconSets[prefix],
 				useFallback: true,

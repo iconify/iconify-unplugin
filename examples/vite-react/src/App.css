@@ -6,3 +6,6 @@ p {
 p:hover {
 	color: red;
 }
+pre {
+	white-space: pre-wrap;
+}
