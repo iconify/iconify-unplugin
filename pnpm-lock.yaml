@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@cyberalien/svg-utils':
-        specifier: ^1.2.1
-        version: 1.2.1
+        specifier: ^1.2.4
+        version: 1.2.4
       '@iconify/types':
         specifier: ^2.0.0
         version: 2.0.0
@@ -56,8 +56,8 @@ importers:
         version: 19.2.4(react@19.2.4)
     devDependencies:
       '@iconify-json/line-md':
-        specifier: ^1.2.15
-        version: 1.2.15
+        specifier: ^1.2.16
+        version: 1.2.16
       '@iconify-json/mdi-light':
         specifier: ^1.2.2
         version: 1.2.2
@@ -84,8 +84,8 @@ importers:
         version: 10.28.4
     devDependencies:
       '@iconify-json/line-md':
-        specifier: ^1.2.15
-        version: 1.2.15
+        specifier: ^1.2.16
+        version: 1.2.16
       '@iconify-json/mdi-light':
         specifier: ^1.2.2
         version: 1.2.2
@@ -115,8 +115,8 @@ importers:
         version: 19.2.4(react@19.2.4)
     devDependencies:
       '@iconify-json/line-md':
-        specifier: ^1.2.15
-        version: 1.2.15
+        specifier: ^1.2.16
+        version: 1.2.16
       '@iconify-json/mdi-light':
         specifier: ^1.2.2
         version: 1.2.2
@@ -145,8 +145,8 @@ importers:
   examples/vite-svelte:
     devDependencies:
       '@iconify-json/line-md':
-        specifier: ^1.2.15
-        version: 1.2.15
+        specifier: ^1.2.16
+        version: 1.2.16
       '@iconify-json/mdi-light':
         specifier: ^1.2.2
         version: 1.2.2
@@ -185,8 +185,8 @@ importers:
         version: 3.5.29(typescript@5.9.3)
     devDependencies:
       '@iconify-json/line-md':
-        specifier: ^1.2.15
-        version: 1.2.15
+        specifier: ^1.2.16
+        version: 1.2.16
       '@iconify-json/mdi-light':
         specifier: ^1.2.2
         version: 1.2.2
@@ -337,8 +337,8 @@ packages:
     resolution: {integrity: sha512-ubmJ6TShyaD69VE9DQrlXcdkvJbmwWPB8qYj0H2kaJi29O7vJT9ajSdBd2W8CG34pwL9pYA74fi7RHC1qbLoVQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
-  '@cyberalien/svg-utils@1.2.1':
-    resolution: {integrity: sha512-4Yulz3LkLsvE6802u6zRzg5jIZqjumWQYydW1gBYDT1wbQBobJ0MoGpBrwkfLpEqIgWetggen15PSj/ichplvw==}
+  '@cyberalien/svg-utils@1.2.4':
+    resolution: {integrity: sha512-4gy8TOhEp/Zy0q/B935c5KZn2XFtFoUy01VH04bCMgzljpht0/QQGrk4eS5SNkl2YgohpTur2CYsRdDdCyYSAg==}
 
   '@emnapi/core@1.8.1':
     resolution: {integrity: sha512-AvT9QFpxK0Zd8J0jopedNm+w/2fIzvtPKPjqyw9jwvBaReTTqPBk9Hixaz7KbjimP+QNz605/XnjFcDAL2pqBg==}
@@ -505,8 +505,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@iconify-json/line-md@1.2.15':
-    resolution: {integrity: sha512-W7I8Ac/V+Flm5HcBopKluwxAokZhIqzXXqK2EmU6R04OUtwOu4eT5TXQ1o7IX9soYVf4IffdsDzR/qcRirE9lQ==}
+  '@iconify-json/line-md@1.2.16':
+    resolution: {integrity: sha512-esHPUQUp30NyqJWa7MNu6ExdG8z/aEFC5r56rVyRGhtJ7acOme6YtYPnDOgVu6p+kk24rM8602xkFuBC6g6x+w==}
 
   '@iconify-json/mdi-light@1.2.2':
     resolution: {integrity: sha512-86UV9uyNve8zRFWiPrOrrDp9GDzsZM7plYV/on4VjgLLqXlyriuy541eHZB7LIOzTUyIPVli7QiUpBbTtBhsFw==}
@@ -2256,7 +2256,7 @@ snapshots:
       '@babel/helper-string-parser': 8.0.0-rc.1
       '@babel/helper-validator-identifier': 8.0.0-rc.1
 
-  '@cyberalien/svg-utils@1.2.1':
+  '@cyberalien/svg-utils@1.2.4':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -2354,7 +2354,7 @@ snapshots:
   '@esbuild/win32-x64@0.27.2':
     optional: true
 
-  '@iconify-json/line-md@1.2.15':
+  '@iconify-json/line-md@1.2.16':
     dependencies:
       '@iconify/types': 2.0.0
 
