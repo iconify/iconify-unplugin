@@ -50,8 +50,8 @@ See [SVG + CSS](https://cyberalien.dev/articles/svg-css/) for details.
 
 Why is this better?
 
--   Reduces HTML size, especially noticesable when the same icon is used multiple times.
--   CSS is cached, so icon content is cached by browser instead of being included in HTML.
+- Reduces HTML size, especially noticesable when the same icon is used multiple times.
+- CSS is cached, so icon content is cached by browser instead of being included in HTML.
 
 Plugin uses hashing to generate unique class names. This prevents duplication and avoids collissions.
 
@@ -70,14 +70,14 @@ This will make it possible to add support for more frameworks and render icons a
 
 To support Safari browser, you need to install the following dev dependencies:
 
--   For Vue: `@iconify/css-vue`
--   For Svelte: `@iconify/css-svelte`
--   For React and Preact: `@iconify/css-react`
+- For Vue: `@iconify/css-vue`
+- For Svelte: `@iconify/css-svelte`
+- For React and Preact: `@iconify/css-react`
 
 There are no fallback components for other frameworks. If you are not using frameworks listed above, your options are:
 
--   Ignore Safari users (bad option).
--   Render full SVG instead of SVG+CSS (see plugin options below).
+- Ignore Safari users (bad option).
+- Render full SVG instead of SVG+CSS (see plugin options below).
 
 ## Compilers
 
@@ -85,14 +85,14 @@ Iconify Unplugin supports several compilers.
 
 Compilers with a fallback for Safari browser:
 
--   `vue` - generates Vue 3 components.
--   `svelte` - generates Svelte 5 components (uses runes).
--   `react` - generates React components.
--   `preact` - generates Preact components.
+- `vue` - generates Vue 3 components.
+- `svelte` - generates Svelte 5 components (uses runes).
+- `react` - generates React components.
+- `preact` - generates Preact components.
 
 Compilers without a fallback, so icons will work only in modern browsers:
 
--   `raw` - generates icon as string, can be used in with framework (see `vite-vue` and `vite-svelte` examples for usage).
+- `raw` - generates icon as string, can be used in with framework (see `vite-vue` and `vite-svelte` examples for usage).
 
 ## Installation
 
@@ -124,17 +124,17 @@ export default defineConfig({
 
 Syntax for other bundlers is similar to example above:
 
--   Replace "vite" with bundler name. Supported bundlers: "esbuild", "farm", "rollup", "rspack", "webpack".
--   Add plugin to plugins list. Plugin options are the same for all bundlers.
+- Replace "vite" with bundler name. Supported bundlers: "esbuild", "farm", "rollup", "rspack", "webpack".
+- Add plugin to plugins list. Plugin options are the same for all bundlers.
 
 ## Plugin options
 
 Plugin accepts the following options:
 
--   compiler: default "compiler" value for icons.
--   namespace: change URL from "iconify" to something else, allowing you to use multiple instances of plugin with different options.
--   mode: rendering mode, default is "svg+css". Supported values are "svg+css" and "svg" to render full SVG.
--   css: rendering mode for stylesheet, default is "import".
+- compiler: default "compiler" value for icons.
+- namespace: change URL from "iconify" to something else, allowing you to use multiple instances of plugin with different options.
+- mode: rendering mode, default is "svg+css". Supported values are "svg+css" and "svg" to render full SVG.
+- css: rendering mode for stylesheet, default is "import".
 
 See `src/plugin/types/options.ts` for full list of options.
 
@@ -147,9 +147,8 @@ If both URL parameter and config value are set, URL parameter is used.
 
 Plugin supports several modes for rendering SVG+CSS icons, which can be set in "css" option or URL parameter:
 
--   "import": styles are split in separate files, imported from package. This reduces duplication.
--   "module": uses CSS modules. This is not advised because it generates much longer class names without providing any benefit. However, some frameworks, such as Next.js and Qwik, intentionally do not support importing css files, so this is an option if you are using one of those frameworks.
--   "embed": embeds CSS in SVG using `<style>` tag.
+- "import": styles are split in separate files, imported from package. This reduces duplication.
+- "embed": embeds CSS in SVG using `<style>` tag.
 
 Default value is "import".
 
@@ -167,8 +166,8 @@ Plugin can also load icons from Iconify API and cache it, but this could be slow
 
 Import icon component from `/~iconify/{prefix}/{name}`, where:
 
--   `{prefix}` is icon set prefix, such as "mdi"
--   `{name}` is icon name, such as "home"
+- `{prefix}` is icon set prefix, such as "mdi"
+- `{name}` is icon name, such as "home"
 
 See [Iconify icon sets](https://icon-sets.iconify.design/) for all icons.
 Select icon and you'll see an option to copy icon name.
@@ -177,8 +176,8 @@ Then use that icon as component.
 
 Additionally, instead of `/~iconify/` prefix for icon names, you can use:
 
--   `virtual:iconify/` - not supported by webpack
--   `/virtual:iconify/` - not supported by webpack
+- `virtual:iconify/` - not supported by webpack
+- `/virtual:iconify/` - not supported by webpack
 
 You can also change `iconify` part to anything else by setting `namespace` option to plugin (see examples in `examples` directory),
 which can be used to run multiple instances of plugin with different options.
@@ -224,11 +223,11 @@ import BellIcon from '/~iconify/mdi-light/bell?height=1em&compiler=vue';
 
 Supported parameters:
 
--   `square=true` - makes icon's viewBox square.
--   `width` and `height` - sets icon size: `height=1em`.
--   `size` sets both `width` and `height`: `size=1em`.
--   `fallback` overrides fallback icon name for Safari browser. Set it to an empty string to disable Safari fallback.
--   `compiler` overrides default compiler for icon.
+- `square=true` - makes icon's viewBox square.
+- `width` and `height` - sets icon size: `height=1em`.
+- `size` sets both `width` and `height`: `size=1em`.
+- `fallback` overrides fallback icon name for Safari browser. Set it to an empty string to disable Safari fallback.
+- `compiler` overrides default compiler for icon.
 
 ### Size parameters
 
