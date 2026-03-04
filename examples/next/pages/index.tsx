@@ -12,11 +12,11 @@ const Home: NextPage = () => {
 		<main>
 			<h1>Icons test (next)</h1>
 			<p className="warning">
-				Important: because Next.js does not allow importing CSS from
-				components for absolutely no reason, CSS is embedded in SVG.
+				Important: Next.js uses Turbopack by default, but Unplugin
+				currently does not support it, so Webpack is used instead.
 				<br />
-				If you want to use icons with CSS, do not use Next.js, use React
-				with Vite or switch to a different framework.
+				Webpack in Next.js does not allow importing CSS from components,
+				so in this example CSS is embedded in SVG.
 			</p>
 			<p>
 				React component with fallback, height as prop:
