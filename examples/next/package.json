@@ -8,16 +8,16 @@
 		"start": "next start --webpack"
 	},
 	"dependencies": {
-		"next": "^16.1.6",
-		"react": "^19.2.4",
-		"react-dom": "^19.2.4"
+		"next": "^16.2.4",
+		"react": "^19.2.5",
+		"react-dom": "^19.2.5"
 	},
 	"devDependencies": {
 		"@iconify-json/line-md": "^1.2.16",
 		"@iconify-json/mdi-light": "^1.2.2",
-		"@iconify/css-react": "^1.0.1",
+		"@iconify/css-react": "^1.0.2",
 		"@iconify/unplugin": "workspace:*",
-		"@types/node": "^24.11.0",
+		"@types/node": "^24.12.2",
 		"@types/react": "^19.2.14",
 		"typescript": "^5.9.3"
 	},
