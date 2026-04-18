@@ -56,9 +56,11 @@ export async function loadIcon(
 	}
 
 	// Options for conversion
+	const isLegacy = options.mode === 'legacy';
 	const convertOptions: ConvertSVGContentOptions = {
 		...defaultCSSHashOptions,
 		...options.cssHash,
+		legacy: isLegacy,
 	};
 
 	// Get fallback icon name
@@ -73,7 +75,7 @@ export async function loadIcon(
 			return convertIconifyIcon(data, {
 				name,
 				prefix,
-				useFallback: iconSet.useFallback,
+				useFallback: isLegacy ? false : iconSet.useFallback,
 				options: convertOptions,
 				mode: options.mode,
 			});
@@ -91,8 +93,8 @@ export async function loadIcon(
 			return convertIconifyIcon(data, {
 				name,
 				prefix,
-				fallback,
-				useFallback: true,
+				fallback: isLegacy ? undefined : fallback,
+				useFallback: !isLegacy,
 				options: convertOptions,
 				mode: options.mode,
 			});
