@@ -9,6 +9,7 @@ export function getCompilerDefaultExtension(
 ): string {
 	switch (compiler) {
 		case 'svelte':
+		case 'astro':
 			return compiler;
 
 		case 'react':

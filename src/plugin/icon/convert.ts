@@ -3,6 +3,7 @@ import type { LoadedIconData } from '../types/icon.js';
 import { convertIconifyIconToFactoryContent } from '@cyberalien/svg-utils/lib/components/prepare/iconify.js';
 import type { ConvertSVGContentOptions } from '@cyberalien/svg-utils/lib/svg-css/types.js';
 import { normaliseIconifyIcon } from '@cyberalien/svg-utils/lib/iconify/icon/normalise.js';
+import { defaultSVGCSSPropertyVars } from '@cyberalien/svg-utils/lib/svg-css/props/vars.js';
 import type { IconMode } from '../types/mode.js';
 import { defaultCSSHashOptions } from '../helpers/config.js';
 
@@ -56,6 +57,7 @@ export function convertIconifyIcon(
 			...convertOptions,
 			fallback: fallback || useFallback,
 			context: defaultCSSHashOptions.context,
+			vars: defaultSVGCSSPropertyVars,
 		}),
 		useFallback,
 	};
