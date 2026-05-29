@@ -24,7 +24,13 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 		enforce: 'pre',
 		resolveId(id) {
 			const cleanPath = testPluginPath(id, fullOptions);
+			// console.log(
+			// 	'Resolving:',
+			// 	id,
+			// 	cleanPath ? 'matched' : 'not matched'
+			// );
 			if (cleanPath) {
+				// console.log('Merged:', mergeURL(cleanPath));
 				return mergeURL(cleanPath);
 			}
 			return null;
@@ -36,6 +42,8 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 		async load(id) {
 			const cleanPath = testPluginPath(id, fullOptions);
 			if (cleanPath) {
+				// console.log('Loading:', id, cleanPath);
+
 				// Init stuff
 				if (!(await initCacheDir(options?.cacheDir))) {
 					throw new Error(

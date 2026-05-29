@@ -1,6 +1,9 @@
 import type { SplitURL } from '../types/urls.js';
 import { getCacheDir } from './config.js';
 
+// Ignore keys in query
+const skipKeys = ['inline'];
+
 /**
  * Get cache filename from URL or string
  */
@@ -16,7 +19,9 @@ export function getCacheFilename(url: SplitURL | string): string | undefined {
 	// Split URL, can be used only with empty query
 	const { namespace, directory, filename, extension, query } = url;
 	for (const key of query) {
-		return;
+		if (!skipKeys.includes(key[0])) {
+			return;
+		}
 	}
 	const parts: string[] = [
 		cacheDir,
