@@ -36,5 +36,5 @@
 		"builtin": true
 	},
 	"globals": {},
-	"ignorePatterns": ["*.d.ts"]
+	"ignorePatterns": ["*.d.ts", "examples/**"]
 }

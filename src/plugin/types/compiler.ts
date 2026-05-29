@@ -1,6 +1,12 @@
 /**
  * Supported compilers
  *
- * Add entry to 'src/types' for each compiler
+ * Add entry to '/types' for each compiler
  */
-export type ComponentCompiler = 'raw' | 'react' | 'preact' | 'svelte' | 'vue';
+export type ComponentCompiler =
+	| 'raw'
+	| 'react'
+	| 'preact'
+	| 'svelte'
+	| 'vue'
+	| 'astro';

@@ -57,6 +57,9 @@
 			"import": "./dist/webpack.mjs",
 			"require": "./dist/webpack.cjs"
 		},
+		"./types/astro": {
+			"types": "./types/astro.d.ts"
+		},
 		"./types/preact": {
 			"types": "./types/preact.d.ts"
 		},

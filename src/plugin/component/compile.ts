@@ -3,6 +3,7 @@ import { createRawComponent } from '@cyberalien/svg-utils/lib/components/raw.js'
 import { createSvelteComponent } from '@cyberalien/svg-utils/lib/components/svelte.js';
 import { createVueFunctionalComponent } from '@cyberalien/svg-utils/lib/components/vue-func.js';
 import { createJSXComponent } from '@cyberalien/svg-utils/lib/components/jsx.js';
+import { createAstroComponent } from '@cyberalien/svg-utils/lib/components/astro.js';
 import { makeSquareViewBox } from '@cyberalien/svg-utils/lib/svg/viewbox/square.js';
 import type { LoadedIconData } from '../types/icon.js';
 import type { CleanedPluginOptions } from '../types/options.js';
@@ -11,6 +12,11 @@ import { createComponentFactoryOptions } from './options.js';
 import { getBooleanParam, getIconCSSRenderingMode } from '../url/params.js';
 import { compileSvelteComponent } from './svelte.js';
 import type { ComponentCompiler } from '../types/compiler.js';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function assertInvalidCompiler(value: undefined) {
+	//
+}
 
 /**
  * Compile component
@@ -87,6 +93,12 @@ export async function compileComponent(
 				jsx: 'preact',
 				fallbackPackage: '@iconify/css-react',
 			});
+
+		case 'astro':
+			return createAstroComponent(icon, factoryOptions);
+
+		default:
+			assertInvalidCompiler(compiler);
 	}
 
 	return;
