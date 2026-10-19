@@ -1,27 +1,25 @@
-import type { UnpluginFactory } from 'unplugin';
-import { createUnplugin } from 'unplugin';
-import type { PluginOptions } from './plugin/types/options.js';
-import { testPluginPath } from './plugin/url/test.js';
-import { mergeURL } from './plugin/url/split.js';
-import { initCacheDir } from './plugin/cache/config.js';
-import { readFromCache } from './plugin/cache/read.js';
-import { cleanUpOptions } from './plugin/helpers/options.js';
-import { loadIcon } from './plugin/icon/load.js';
-import { isIconAsset } from './plugin/icon/path.js';
-import { getFallbackParam, getIconRenderingMode } from './plugin/url/params.js';
-import { compileComponent } from './plugin/component/compile.js';
-import { prepareComponentForRender } from './plugin/component/stringify.js';
-import { assertDepenecyExists } from './plugin/component/deps.js';
+import type { UnpluginFactory } from "unplugin";
+import { createUnplugin } from "unplugin";
+import type { PluginOptions } from "./plugin/types/options.js";
+import { testPluginPath } from "./plugin/url/test.js";
+import { mergeURL } from "./plugin/url/split.js";
+import { initCacheDir } from "./plugin/cache/config.js";
+import { readFromCache } from "./plugin/cache/read.js";
+import { cleanUpOptions } from "./plugin/helpers/options.js";
+import { loadIcon } from "./plugin/icon/load.js";
+import { isIconAsset } from "./plugin/icon/path.js";
+import { getFallbackParam, getIconRenderingMode } from "./plugin/url/params.js";
+import { compileComponent } from "./plugin/component/compile.js";
+import { prepareComponentForRender } from "./plugin/component/stringify.js";
+import { assertDepenecyExists } from "./plugin/component/deps.js";
 
-export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
-	options
-) => {
+export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (options) => {
 	// Clean up options
 	const fullOptions = cleanUpOptions(options || {});
 
 	return {
-		name: 'unplugin-iconify',
-		enforce: 'pre',
+		name: "unplugin-iconify",
+		enforce: "pre",
 		resolveId(id) {
 			const cleanPath = testPluginPath(id, fullOptions);
 			// console.log(
@@ -47,7 +45,7 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 				// Init stuff
 				if (!(await initCacheDir(options?.cacheDir))) {
 					throw new Error(
-						'Failed to initialize cache directory, try setting custom one with "cacheDir" option'
+						'Failed to initialize cache directory, try setting custom one with "cacheDir" option',
 					);
 				}
 
@@ -56,31 +54,24 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 				if (cached) {
 					return {
 						code: cached,
-						map: { version: 3, mappings: '', sources: [] } as any,
+						map: { version: 3, mappings: "", sources: [] } as any,
 					};
 				}
 
 				// Check for asset
-				if (cleanPath.type === 'asset') {
+				if (cleanPath.type === "asset") {
 					// Cannot render: should have been cached when generating icon
-					throw new Error(
-						`Asset not found in cache: ${mergeURL(cleanPath)}`
-					);
+					throw new Error(`Asset not found in cache: ${mergeURL(cleanPath)}`);
 				}
 
 				// Get icon name
 				const iconName = isIconAsset(cleanPath);
 				if (!iconName) {
-					throw new Error(
-						`Invalid icon path: ${mergeURL(cleanPath)}`
-					);
+					throw new Error(`Invalid icon path: ${mergeURL(cleanPath)}`);
 				}
 
 				// Get rendering mode and load icon
-				const mode = getIconRenderingMode(
-					cleanPath.query,
-					fullOptions.mode
-				);
+				const mode = getIconRenderingMode(cleanPath.query, fullOptions.mode);
 				const icon = await loadIcon(iconName.prefix, iconName.name, {
 					...fullOptions,
 					fallback: getFallbackParam(cleanPath.query),
@@ -92,15 +83,9 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 
 				// Compile component
 				// console.log('generating:', cleanPath, 'with', icon);
-				const component = await compileComponent(
-					icon,
-					cleanPath,
-					fullOptions
-				);
+				const component = await compileComponent(icon, cleanPath, fullOptions);
 				if (!component) {
-					throw new Error(
-						`Failed to compile component: ${mergeURL(cleanPath)}`
-					);
+					throw new Error(`Failed to compile component: ${mergeURL(cleanPath)}`);
 				}
 
 				// Check all dependencies
@@ -111,15 +96,12 @@ export const unpluginFactory: UnpluginFactory<PluginOptions | undefined> = (
 				}
 
 				// Return content
-				const content = await prepareComponentForRender(
-					component,
-					fullOptions.namespace
-				);
+				const content = await prepareComponentForRender(component, fullOptions.namespace);
 				// console.log(`Generated content for ${mergeURL(cleanPath)}:`);
 				// console.log(content);
 				return {
 					code: content,
-					map: { version: 3, mappings: '', sources: [] } as any,
+					map: { version: 3, mappings: "", sources: [] } as any,
 				};
 			}
 		},
